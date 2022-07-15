@@ -1,0 +1,21 @@
+textarea {
+    width: 100%;
+    min-height: 100%;
+    padding: 10px;
+    display: block;
+    background:inherit;
+    color: #fefefe;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    transition: background-color .3s ease;
+}
+
+textarea::placeholder {
+    color: #fefefe;
+}
+
+textarea:hover{
+    background: #fff4;
+}

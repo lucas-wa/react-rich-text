@@ -1,0 +1,51 @@
+.container {
+    padding: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:10px;
+}
+
+.container #title {
+    width: 100%;
+    color: inherit;
+    background: inherit;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 42px;
+
+}
+
+#title::placeholder{
+    color: inherit;
+    font-size: 42px;
+    font-weight: 700;
+    font-family: inherit;
+
+}
+
+.notebook {
+    width: 100%;
+    display: flex;
+    gap:5px;
+    /* align-items:center; */
+}
+
+
+.plusIcon{
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 1px;
+    width: 19px;
+    height: 19px;
+    transition: background-color .3s ease;
+    margin-top: 8px;
+}
+
+.plusIcon:hover{
+    background: #fff4;
+}
+
