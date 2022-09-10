@@ -42,7 +42,7 @@
 No terminal, clone o projeto: 
 
 ```
-git clone https://github.com/React-Bootcamp-WoMarkersCode/certificate-generator
+git clone https://github.com/lucas-wa/react-rich-text.git
 ```
 
 Instale as dependências:
