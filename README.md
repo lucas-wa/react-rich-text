@@ -73,4 +73,4 @@ Abra o navegador e digite "http://localhost:xxxx", sendo `xxxx` a porta especifi
 
 ## Licença 
 
-The [MIT License]() (MIT)
+The [MIT License](https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) (MIT)
