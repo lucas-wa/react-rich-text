@@ -35,7 +35,7 @@
 }
 
 
-.plusIcon{
+.icons{
     cursor: pointer;
     border-radius: 5px;
     padding: 1px;
@@ -45,7 +45,7 @@
     margin-top: 8px;
 }
 
-.plusIcon:hover{
+.icons:hover{
     background: #fff4;
 }
 

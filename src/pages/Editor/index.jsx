@@ -1,5 +1,6 @@
 import "./styles.css";
 import { VscAdd } from "react-icons/vsc";
+import {BsFillTrashFill} from "react-icons/bs"
 import { SharedTextArea } from "../../components/SharedTextArea"
 import { useState } from "react";
 
@@ -11,7 +12,6 @@ export function Editor() {
 
     function handleAddNotebooks(index) {
 
-        console.log(index);
 
         setNotebooks(prevState => {
             const previous = [...prevState];
@@ -21,16 +21,29 @@ export function Editor() {
 
             previous.push({ textType: "added", value: "" });
 
-            console.log([...previous, ...deleted])
 
             return [...previous, ...deleted]
 
         });
     }
 
+    function handleDeleteNotebooks(index){
+        if(notebooks.length > 1){
+            setNotebooks(prevState => {
+                const previous = [...prevState];
+
+                previous.splice(index, 1);
+
+                return previous
+            });
+        }
+    }
+
     function handleSaveText(event, index) {
         setNotebooks(prevState => {
             const previous = [...prevState];
+
+            console.log(previous)
             
             previous[index].value = event.target.value;
 
@@ -48,17 +61,32 @@ export function Editor() {
             {
                 notebooks.map((notebook, index) => (
                     <div className="notebook" key={index}>
-                        <VscAdd className="plusIcon" onMouseDown={() => { handleAddNotebooks(index) }} />
-                        <SharedTextArea handleSaveText={(event) => handleSaveText(event, index)} value={notebook.value}/>
+                        <VscAdd 
+                        className="icons" 
+                        onMouseDown={
+                            () => handleAddNotebooks(index)
+                        } 
+                        
+                        />
+
+                        <SharedTextArea 
+                        handleSaveText={
+                            event => handleSaveText(event, index)
+                        } 
+                        value={notebook.value}
+                        handleDeleteNotebooks = {
+                            () => handleDeleteNotebooks(index)
+                        }
+                        />
+
+                        <BsFillTrashFill
+                        className="icons"
+                        onClick={
+                            ()=>{handleDeleteNotebooks(index)}
+                        }/>
                     </div>
                 ))
             }
-
-            {/* <div className="notebook">
-                <VscAdd className="plusIcon" onClick={handleAddNotebooks}/>
-                <SharedTextArea/>
-            </div> */}
-
         </div>
     )
 }

@@ -1,4 +1,4 @@
-textarea {
+.editableContent {
     width: 100%;
     min-height: 100%;
     padding: 10px;
@@ -12,10 +12,10 @@ textarea {
     transition: background-color .3s ease;
 }
 
-textarea::placeholder {
+.editableContent::placeholder {
     color: #fefefe;
 }
 
-textarea:hover{
+.editableContent:hover{
     background: #fff4;
 }
