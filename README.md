@@ -25,7 +25,7 @@
 ## Descrição do projeto 
 
 <p align="justify">
-  O projeto consiste em um editor de textos no formato Rich Text capaz de serutilizado pelo navagador, possibilitando a criação de resumos, artigos, documentações e  outros textos estilizados.
+  O projeto consiste em um editor de textos no formato Rich Text capaz de serutilizado pelo navegador, possibilitando a criação de resumos, artigos, documentações e  outros textos estilizados.
 </p>
 
 ## Funcionalidades atuais
