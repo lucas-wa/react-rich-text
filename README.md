@@ -30,7 +30,7 @@
 
 ## Funcionalidades atuais
 
-:heavy_check_mark: Criaçãoe e exclusão de Notebooks para escrita de testos simples    
+:heavy_check_mark: Criaçãoe e exclusão de Notebooks para escrita de textos simples    
 
 
 ## Pré-requisitos
