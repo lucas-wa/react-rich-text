@@ -18,6 +18,8 @@
 
 :small_blue_diamond: [Como rodar a aplicação](#como-rodar-a-aplicação-arrow_forward)
 
+:small_blue_diamond: [Deploy](#deploy)
+
 :small_blue_diamond: [Linguagens, dependencias e libs utilizadas](#linguagens-dependencias-e-libs-utilizadas-books)
 
 
@@ -69,7 +71,10 @@ Abra o navegador e digite "http://localhost:xxxx", sendo `xxxx` a porta especifi
 
 :memo: Implementar atalhosde teclado para marcações de texto como negrito e itálico; 
 
-:memo: Troca entre tipos de notebooks (imagens, blocos de código, subtítulos, etc.) 
+:memo: Troca entre tipos de notebooks (imagens, blocos de código, subtítulos, etc.)
+
+## Deploy
+- [React Rich Text](https://react-rich-text.vercel.app/)
 
 ## Licença 
 
