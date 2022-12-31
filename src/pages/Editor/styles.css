@@ -27,25 +27,5 @@
 
 }
 
-.notebook {
-    width: 100%;
-    display: flex;
-    gap:5px;
-    /* align-items:center; */
-}
 
-
-.icons{
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 1px;
-    width: 19px;
-    height: 19px;
-    transition: background-color .3s ease;
-    margin-top: 8px;
-}
-
-.icons:hover{
-    background: #fff4;
-}
 
