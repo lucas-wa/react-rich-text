@@ -18,6 +18,8 @@
 
 :small_blue_diamond: [Como rodar a aplicação](#como-rodar-a-aplicação-arrow_forward)
 
+:small_blue_diamond: [Deploy](#deploy)
+
 :small_blue_diamond: [Linguagens, dependencias e libs utilizadas](#linguagens-dependencias-e-libs-utilizadas-books)
 
 
@@ -25,12 +27,12 @@
 ## Descrição do projeto 
 
 <p align="justify">
-  O projeto consiste em um editor de textos no formato Rich Text capaz de serutilizado pelo navagador, possibilitando a criação de resumos, artigos, documentações e  outros textos estilizados.
+  O projeto consiste em um editor de textos no formato Rich Text capaz de serutilizado pelo navegador, possibilitando a criação de resumos, artigos, documentações e  outros textos estilizados.
 </p>
 
 ## Funcionalidades atuais
 
-:heavy_check_mark: Criaçãoe e exclusão de Notebooks para escrita de testos simples    
+:heavy_check_mark: Criaçãoe e exclusão de Notebooks para escrita de textos simples    
 
 
 ## Pré-requisitos
@@ -42,7 +44,7 @@
 No terminal, clone o projeto: 
 
 ```
-git clone https://github.com/React-Bootcamp-WoMarkersCode/certificate-generator
+git clone https://github.com/lucas-wa/react-rich-text.git
 ```
 
 Instale as dependências:
@@ -69,8 +71,11 @@ Abra o navegador e digite "http://localhost:xxxx", sendo `xxxx` a porta especifi
 
 :memo: Implementar atalhosde teclado para marcações de texto como negrito e itálico; 
 
-:memo: Troca entre tipos de notebooks (imagens, blocos de código, subtítulos, etc.) 
+:memo: Troca entre tipos de notebooks (imagens, blocos de código, subtítulos, etc.)
+
+## Deploy
+- [React Rich Text](https://react-rich-text.vercel.app/)
 
 ## Licença 
 
-The [MIT License]() (MIT)
+The [MIT License](https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) (MIT)
