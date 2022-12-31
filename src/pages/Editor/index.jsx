@@ -23,7 +23,17 @@ export function Editor() {
         )
     }
 
-    function handleDeleteNotebooks(){
+    function handleDeleteNotebooks(event, index){
+        setNotebooks(
+            prevState => {
+                const prev = [...prevState]
+                console.log(index)
+
+                prev.splice(index, 1)
+
+                return prev
+            }
+        )
     }
 
     function handleSaveText(event, index, newValue) {
@@ -57,6 +67,7 @@ export function Editor() {
                     index = {index}
                     handleAddNotebooks = {handleAddNotebooks}
                     handleSaveText = {handleSaveText}
+                    handleDeleteNotebooks = {handleDeleteNotebooks}
                     />
                 )
             }

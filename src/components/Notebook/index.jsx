@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import "./styles.css";
 
 
-export function Notebook({textValue, index, handleAddNotebooks, handleSaveText}) {
+export function Notebook({textValue, 
+                          index, 
+                          handleAddNotebooks, 
+                          handleSaveText, 
+                          handleDeleteNotebooks}) {
 
     const [valueState, setValueState] = useState('')
 
@@ -58,7 +62,8 @@ export function Notebook({textValue, index, handleAddNotebooks, handleSaveText})
                 />
 
                 <BsFillTrashFill
-                className="icons"/>
+                className="icons"
+                onMouseDown={e => handleDeleteNotebooks(e, index)}/>
 
             </div>
         )
