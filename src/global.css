@@ -1,11 +1,28 @@
+:root {
+    font-size: 62.5%  
+}
+
 * {
     margin: 0;
     padding:0;
     box-sizing: border-box;
+
 }
 
 body{
-    background:#0e0e0e;
+    background:#2E2E2E;
     color:#fefefe;
     font-family: 'Poppins', sans-serif;
 }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }

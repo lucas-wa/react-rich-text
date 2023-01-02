@@ -1,0 +1,22 @@
+.modal-wrapper {
+    width: 100vw;
+    height: 100vh;
+    top:0;
+    left: 0;
+    position: fixed;
+    /* background-color: black; */
+
+}
+
+.modal {
+    width: 10rem;
+    height: 10rem;
+    background: #0e0e0e;
+    /* position: absolute; */
+    border-radius: .5rem;
+    /* left: -10.5rem; */
+    z-index: 1;
+}
+
+
+

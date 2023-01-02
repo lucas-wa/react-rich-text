@@ -3,6 +3,7 @@ import "./styles.css";
 import { Notebook } from "../../components/Notebook"
 import { useState } from "react";
 import { useEffect } from "react";
+import { Modal } from "../../components/Modal";
 
 export function Editor() {
     const [notebooks, setNotebooks] = useState(
@@ -10,11 +11,11 @@ export function Editor() {
             {textType: "text", value: ""}
         ]);
 
+
     function handleAddNotebooks(event, index) {
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
-                console.log(index)
 
                 prev.splice(index + 1, 0, {textType: "text", value: ""})
 
@@ -27,13 +28,16 @@ export function Editor() {
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
-                console.log(index)
 
                 prev.splice(index, 1)
 
                 return prev
             }
         )
+
+        if(notebooks.length <= 1){
+            setNotebooks([{textType: "text", value: ""}])
+        }
     }
 
     function handleSaveText(event, index, newValue) {
@@ -41,7 +45,6 @@ export function Editor() {
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
-                console.log(index)
     
                 prev[index].value = newValue
     
@@ -49,14 +52,32 @@ export function Editor() {
             }
         )
 
-        console.log(notebooks)
     }
 
-    // useEffect(()=> console.log(notebooks), [notebooks])
+    function handleMenuModal(index){
+
+        const notebookLocation = document
+        .querySelector(`.notebook${index}`)
+        .getBoundingClientRect()
+
+        const modal_wrapper = document.querySelector(`.modal-wrapper`)
+        const menu = document.querySelector(`.modal-wrapper .modal`);
+
+        
+        menu.style.marginTop = notebookLocation.top.toString() + "px"
+        menu.style.marginLeft = (notebookLocation.left/2).toString() + "px"
+        console.log(menu.style.marginTop)
+
+        modal_wrapper.classList.toggle("sr-only")
+    }
+
 
 
     return (
         <div className="container">
+
+            <Modal />
+
 
             <input type="text" name="" id="title" placeholder="Title" />
 
@@ -68,6 +89,7 @@ export function Editor() {
                     handleAddNotebooks = {handleAddNotebooks}
                     handleSaveText = {handleSaveText}
                     handleDeleteNotebooks = {handleDeleteNotebooks}
+                    handleMenuModal = {handleMenuModal}
                     />
                 )
             }
