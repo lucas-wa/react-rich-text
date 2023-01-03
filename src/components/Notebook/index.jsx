@@ -19,10 +19,10 @@ export function Notebook({ textValue,
 
 
     function autoSize(event) {
-        const textArea = event.target;
+        const content = event.target;
 
-        textArea.style.cssText = 'height:auto;'
-        textArea.style.cssText = 'height:' + (textArea.scrollHeight) + 'px';
+        content.style.cssText = 'height:auto;'
+        content.style.cssText = 'height:' + (textArea.scrollHeight) + 'px';
     }
 
 
@@ -67,7 +67,20 @@ export function Notebook({ textValue,
 
                 />
 
-                <textarea
+                    <div className="content"
+                    onChange={e => {
+                        const text = e.target.value
+                        autoSize(e)
+                        handleSaveText(e, index, text)
+                    }}
+                    value={textValue}
+                    contentEditable = {true}
+                    >
+
+
+                    </div>
+
+                {/* <textarea
                     rows={1}
                     type="text"
                     name=""
@@ -78,7 +91,7 @@ export function Notebook({ textValue,
                         handleSaveText(e, index, text)
                     }}
                     value={textValue}
-                />
+                /> */}
 
                 {/* <BsFillTrashFill
                     className="icons"

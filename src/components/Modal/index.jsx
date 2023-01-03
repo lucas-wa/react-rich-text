@@ -30,7 +30,7 @@ export function Modal({index, handleDeleteNotebooks, handleDuplicateNotebook}){
                         handleDeleteNotebooks(e, index)
                     }}>
                         <BsFillTrashFill/>
-                        <p>Delete</p>
+                        <p>Deletar</p>
                     </li>
 
                     <li onMouseDown={e =>{

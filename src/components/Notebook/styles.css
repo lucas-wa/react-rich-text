@@ -2,7 +2,7 @@
     /* position: relative; */
 }
 
-.notebook textarea {
+.notebook .content {
     width: 100%;
     /* min-height: 100%; */
     padding: 10px;
@@ -16,13 +16,17 @@
     transition: background-color .3s ease;
 }
 
-.notebook textarea::placeholder {
+.notebook .content::placeholder {
     color: #fefefe;
 }
 
-.notebook textarea:hover,
-.notebook textarea:focus{
+.notebook .content:hover,
+.notebook .content:focus{
     background: #fff4;
+}
+
+.notebook .content i{
+    background: none;
 }
 
 .notebook {

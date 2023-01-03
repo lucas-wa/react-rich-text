@@ -113,7 +113,6 @@ export function Editor() {
                     index = {index}
                     handleAddNotebooks = {handleAddNotebooks}
                     handleSaveText = {handleSaveText}
-                    handleDeleteNotebooks = {handleDeleteNotebooks}
                     handleMenuModal = {handleMenuModal}
                     setIndexEdited = {setIndexEdited}
                     />
