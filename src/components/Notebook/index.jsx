@@ -11,7 +11,8 @@ export function Notebook({ textValue,
     handleAddNotebooks,
     handleSaveText,
     handleDeleteNotebooks,
-    handleMenuModal
+    handleMenuModal,
+    setIndexEdited
 }) {
 
     const [valueState, setValueState] = useState('')
@@ -59,7 +60,11 @@ export function Notebook({ textValue,
 
                 <CgMenuGridO
                     className="icons"
-                    onMouseDown={(e) => handleMenuModal(index)}
+                    onMouseDown={(e) => {
+                        setIndexEdited(index)
+                        handleMenuModal(index)
+                    }}
+
                 />
 
                 <textarea
@@ -75,9 +80,9 @@ export function Notebook({ textValue,
                     value={textValue}
                 />
 
-                <BsFillTrashFill
+                {/* <BsFillTrashFill
                     className="icons"
-                    onMouseDown={e => handleDeleteNotebooks(e, index)} />
+                    onMouseDown={e => handleDeleteNotebooks(e, index)} /> */}
 
             </div>
         )

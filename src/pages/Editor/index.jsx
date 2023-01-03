@@ -11,6 +11,9 @@ export function Editor() {
             {textType: "text", value: ""}
         ]);
 
+    const [indexEdited, setIndexEdited] = useState(0)
+    
+
 
     function handleAddNotebooks(event, index) {
         setNotebooks(
@@ -63,10 +66,14 @@ export function Editor() {
         const modal_wrapper = document.querySelector(`.modal-wrapper`)
         const menu = document.querySelector(`.modal-wrapper .modal`);
 
+        const modal_wrapper_width = modal_wrapper.getBoundingClientRect().width
+
         
-        menu.style.marginTop = notebookLocation.top.toString() + "px"
-        menu.style.marginLeft = (notebookLocation.left/2).toString() + "px"
-        console.log(menu.style.marginTop)
+        
+        menu.style.top = notebookLocation.top.toString() + "px"
+        menu.style.right = (notebookLocation.right + 20).toString() + "px"
+        
+        console.log(menu)
 
         modal_wrapper.classList.toggle("sr-only")
     }
@@ -76,7 +83,10 @@ export function Editor() {
     return (
         <div className="container">
 
-            <Modal />
+            <Modal
+            handleDeleteNotebooks = {handleDeleteNotebooks}
+            index = {indexEdited}
+            />
 
 
             <input type="text" name="" id="title" placeholder="Title" />
@@ -90,6 +100,7 @@ export function Editor() {
                     handleSaveText = {handleSaveText}
                     handleDeleteNotebooks = {handleDeleteNotebooks}
                     handleMenuModal = {handleMenuModal}
+                    setIndexEdited = {setIndexEdited}
                     />
                 )
             }
