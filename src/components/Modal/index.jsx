@@ -1,11 +1,9 @@
 import { useState } from "react"
 import { BsFillTrashFill } from "react-icons/bs";
+import { HiOutlineDuplicate } from "react-icons/hi";
 import "./styles.css"
 
-export function Modal({index, handleDeleteNotebooks}){
-
-    const [top, setTop] = useState(0);
-
+export function Modal({index, handleDeleteNotebooks, handleDuplicateNotebook}){
 
 
     return (
@@ -34,6 +32,17 @@ export function Modal({index, handleDeleteNotebooks}){
                         <BsFillTrashFill/>
                         <p>Delete</p>
                     </li>
+
+                    <li onMouseDown={e =>{
+                        document.querySelector(".modal-wrapper").classList.add("sr-only")
+                        handleDuplicateNotebook(index)
+                    }}
+                    >
+                        <HiOutlineDuplicate/>
+                        <p>Duplicar</p>
+                    </li>
+
+
                 </ul>
 
             </div>

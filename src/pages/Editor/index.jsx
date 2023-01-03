@@ -57,6 +57,20 @@ export function Editor() {
 
     }
 
+    function handleDuplicateNotebook(index){
+        setNotebooks(
+            prevState => {
+                const prev = [...prevState]
+
+                const value = prev[index].value
+
+                prev.splice(index + 1, 0, {type: "text", value: value})
+
+                return prev
+            }
+        )
+    }
+
     function handleMenuModal(index){
 
         const notebookLocation = document
@@ -85,6 +99,7 @@ export function Editor() {
 
             <Modal
             handleDeleteNotebooks = {handleDeleteNotebooks}
+            handleDuplicateNotebook = {handleDuplicateNotebook}
             index = {indexEdited}
             />
 
