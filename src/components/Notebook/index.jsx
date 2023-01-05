@@ -1,9 +1,10 @@
 import { VscAdd } from "react-icons/vsc";
 import { BsFillTrashFill } from "react-icons/bs"
 import { useEffect, useState } from "react";
-import {CgMenuGridO} from "react-icons/cg"
+import { CgMenuGridO } from "react-icons/cg"
 import { Modal } from "../Modal"
 import "./styles.css";
+import { useRef } from "react";
 
 
 export function Notebook({ textValue,
@@ -12,10 +13,11 @@ export function Notebook({ textValue,
     handleSaveText,
     handleDeleteNotebooks,
     handleMenuModal,
-    setIndexEdited
+    setIndexEdited,
+    notebooks
 }) {
 
-    const [valueState, setValueState] = useState('')
+    const [html, setHtml] = useState(' ');
 
 
     function autoSize(event) {
@@ -38,14 +40,50 @@ export function Notebook({ textValue,
 
 
 
-    // useEffect(()=>{
-    //     const div = document.querySelector(`#notebook${index}`);
+    const divRef = useRef(null)
 
-    //     const observer = new MutationObserver(handleSaveText);
+    useEffect(() => {
 
-    //     observer.observe(div, {childList: true});
-    // },
-    //  []);
+        const observer = new MutationObserver(mutations => {
+            handleSaveText(index, divRef.current.textContent)
+            setHtml(divRef.current.textContent)
+
+        });
+
+        observer.observe(divRef.current, { childList: true, characterData: true, subtree: true });
+
+        // const content = document.querySelector(`.notebook.notebook${index} .content`)
+
+        // content.innerHTML = textValue
+
+        // return () => {observer.disconnect()}
+    },
+        []);
+
+
+
+    useEffect(() => {
+        // divRef.current.innerHTML = html;
+
+        // var target = document.createTextNode("\u0001");
+        // document.getSelection().getRangeAt(1).insertNode(target);
+        // var position = document.querySelector(`.notebook.notebook${index} .content`).innerHTML.indexOf("\u0001");
+        // target.parentNode.removeChild(target);
+
+        const selection = window.getSelection();
+        const range = document.createRange();
+
+        divRef.current.innerHTML.length > 0 ?
+        range.setStart(divRef.current, 1) :
+        range.setStart(divRef.current, 0)
+
+        
+        range.collapse(true);
+        console.log(range.toString())
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }, [html]);
+
 
     return (
         (
@@ -56,7 +94,7 @@ export function Notebook({ textValue,
                     onMouseDown={e => handleAddNotebooks(e, index)}
                 />
 
-  
+
 
                 <CgMenuGridO
                     className="icons"
@@ -67,18 +105,13 @@ export function Notebook({ textValue,
 
                 />
 
-                    <div className="content"
-                    onChange={e => {
-                        const text = e.target.value
-                        autoSize(e)
-                        handleSaveText(e, index, text)
-                    }}
-                    value={textValue}
-                    contentEditable = {true}
-                    >
-
-
-                    </div>
+                <div
+                    ref={divRef}
+                    className="content"
+                    contentEditable={true}
+                >
+                    {textValue}
+                </div>
 
                 {/* <textarea
                     rows={1}

@@ -43,12 +43,11 @@ export function Editor() {
         }
     }
 
-    function handleSaveText(event, index, newValue) {
+    function handleSaveText(index, newValue) {
 
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
-    
                 prev[index].value = newValue
     
                 return prev
@@ -87,10 +86,11 @@ export function Editor() {
         menu.style.top = notebookLocation.top.toString() + "px"
         menu.style.right = (notebookLocation.right + 20).toString() + "px"
         
-        console.log(menu)
 
         modal_wrapper.classList.toggle("sr-only")
     }
+
+    // useEffect(()=>{console.log(notebooks)}, [notebooks]);
 
 
 
@@ -115,6 +115,7 @@ export function Editor() {
                     handleSaveText = {handleSaveText}
                     handleMenuModal = {handleMenuModal}
                     setIndexEdited = {setIndexEdited}
+                    notebooks = {notebooks}
                     />
                 )
             }
