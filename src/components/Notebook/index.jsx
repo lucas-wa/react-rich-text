@@ -79,7 +79,7 @@ export function Notebook({ textValue,
 
         
         range.collapse(true);
-        console.log(range.toString())
+        (range.toString())
         selection.removeAllRanges();
         selection.addRange(range);
     }, [html]);
@@ -109,6 +109,7 @@ export function Notebook({ textValue,
                     ref={divRef}
                     className="content"
                     contentEditable={true}
+                    suppressContentEditableWarning={true}
                 >
                     {textValue}
                 </div>
@@ -125,10 +126,6 @@ export function Notebook({ textValue,
                     }}
                     value={textValue}
                 /> */}
-
-                {/* <BsFillTrashFill
-                    className="icons"
-                    onMouseDown={e => handleDeleteNotebooks(e, index)} /> */}
 
             </div>
         )
