@@ -48,6 +48,7 @@ export function Editor() {
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
+                // console.log(newValue)
                 prev[index].value = newValue
     
                 return prev
@@ -90,7 +91,7 @@ export function Editor() {
         modal_wrapper.classList.toggle("sr-only")
     }
 
-    // useEffect(()=>{console.log(notebooks)}, [notebooks]);
+    useEffect(()=>{console.log(notebooks)}, [notebooks]);
 
 
 

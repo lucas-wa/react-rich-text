@@ -17,7 +17,7 @@ export function Notebook({ textValue,
     notebooks
 }) {
 
-    const [html, setHtml] = useState(' ');
+    const [html, setHtml] = useState(textValue);
 
 
     function autoSize(event) {
@@ -45,8 +45,9 @@ export function Notebook({ textValue,
     useEffect(() => {
 
         const observer = new MutationObserver(mutations => {
-            handleSaveText(index, divRef.current.textContent)
-            setHtml(divRef.current.textContent)
+            handleSaveText(index, divRef.current.innerHTML)
+            // console.log(difRef.current.ht,m)
+            // setHtml(divRef.current.innerHTML)
 
         });
 
@@ -56,33 +57,29 @@ export function Notebook({ textValue,
 
         // content.innerHTML = textValue
 
-        // return () => {observer.disconnect()}
+        return () => {observer.disconnect()}
     },
         []);
 
 
 
     useEffect(() => {
-        // divRef.current.innerHTML = html;
+        // divRef.current.innerHTML = textValue;
 
         // var target = document.createTextNode("\u0001");
         // document.getSelection().getRangeAt(1).insertNode(target);
         // var position = document.querySelector(`.notebook.notebook${index} .content`).innerHTML.indexOf("\u0001");
         // target.parentNode.removeChild(target);
 
-        const selection = window.getSelection();
-        const range = document.createRange();
+        const range = document.createRange()
+        range.selectNodeContents(divRef.current)
+        range.collapse(false)
 
-        divRef.current.innerHTML.length > 0 ?
-        range.setStart(divRef.current, 1) :
-        range.setStart(divRef.current, 0)
+        const selection = document.getSelection();
+        selection.removeAllRanges()
+        selection.addRange(range)
 
-        
-        range.collapse(true);
-        (range.toString())
-        selection.removeAllRanges();
-        selection.addRange(range);
-    }, [html]);
+    }, [textValue]);
 
 
     return (
@@ -110,9 +107,8 @@ export function Notebook({ textValue,
                     className="content"
                     contentEditable={true}
                     suppressContentEditableWarning={true}
-                >
-                    {textValue}
-                </div>
+                    dangerouslySetInnerHTML={{__html: textValue}}
+                />
 
                 {/* <textarea
                     rows={1}

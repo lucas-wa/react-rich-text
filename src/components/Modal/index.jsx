@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { BsFillTrashFill } from "react-icons/bs";
 import { HiOutlineDuplicate } from "react-icons/hi";
+import { BsArrowReturnRight } from "react-icons/bs";
 import "./styles.css"
 
 export function Modal({index, handleDeleteNotebooks, handleDuplicateNotebook}){
@@ -42,7 +43,13 @@ export function Modal({index, handleDeleteNotebooks, handleDuplicateNotebook}){
                         <p>Duplicar</p>
                     </li>
 
-
+                    <li onMouseDown={e =>{
+                        document.querySelector(".modal-wrapper").classList.add("sr-only")
+                    }}
+                    >
+                        <BsArrowReturnRight/>
+                        <p>Tornar um</p>
+                    </li>
                 </ul>
 
             </div>
