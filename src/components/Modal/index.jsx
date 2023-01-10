@@ -1,69 +1,61 @@
+import { useEffect } from "react";
 import { useState } from "react"
-import { BsFillTrashFill } from "react-icons/bs";
-import { HiOutlineDuplicate } from "react-icons/hi";
-import { BsArrowReturnRight } from "react-icons/bs";
-import "./styles.css"
-import { ModalTypes } from "../ModalTypes";
+import { ActionsMenu } from "../ActionsMenu";
+import { MenuTypes } from "../MenuTypes";
 
-export function Modal({index, handleDeleteNotebooks, handleDuplicateNotebook}){
+import "./styles.scss"
 
-    const [typesModal, setTypesModal] = useState(false);
+export function Modal({index, 
+                       setModalState, 
+                       setNotebooks}){
+
+    const [actionsMenu, setActionMenu] = useState(true);
+    const [typesMenu, setTypesMenu] = useState(false);
+
+    useEffect(()=>{
+        const notebookLocation = document
+        .querySelector(`.notebook${index}`)
+        .getBoundingClientRect()
+
+        const modal = document.querySelector(".modal-wrapper .modal")
+
+        modal.style.top = notebookLocation.bottom.toString() + "px"
+        modal.style.left = notebookLocation.left.toString() + "px"
+
+    }, [])
+
 
     return (
 
-        <div className="modal-wrapper sr-only"
-        
-        
-       
-
+        <div className="modal-wrapper"
         onMouseDown={(e) => {
 
 
             if(e.target.classList.contains("modal-wrapper")){
-                document.querySelector(".modal-wrapper").classList.add("sr-only")
-                setTypesModal(false)
+                setModalState(false)
             }
 
         }}>
 
             <div className="modal" >
 
-                <ul>
-                    <li onMouseDown={e => {
-                        document.querySelector(".modal-wrapper").classList.add("sr-only")
-                        handleDeleteNotebooks(e, index)
-                    }}>
-                        <BsFillTrashFill/>
-                        <p>Deletar</p>
-                    </li>
+                {actionsMenu && <ActionsMenu 
+                typesMenu={typesMenu} 
+                index={index} 
+                setNotebooks={setNotebooks}
+                setActionMenu={setActionMenu}
+                setModalState={setModalState}
+                setTypesMenu={setTypesMenu}
+                />}
 
-                    <li onMouseDown={e =>{
-                        document.querySelector(".modal-wrapper").classList.add("sr-only")
-                        handleDuplicateNotebook(index)
-                    }}
-                    >
-                        <HiOutlineDuplicate/>
-                        <p>Duplicar</p>
-                    </li>
-
-                    <li                    
-                    onMouseEnter={e =>{
-                        setTypesModal(true)
-                    }}
-
-                    onMouseDown={e => {
-                        setTypesModal(false)
-                    }}
-                    >
-                        <BsArrowReturnRight/>
-                        <p>Tornar um</p>
-
-                    </li>
-                </ul>
+                {typesMenu && <MenuTypes 
+                index={index}
+                setTypesMenu={setTypesMenu}
+                setModalState={setModalState}
+                />}
 
             </div>
 
-            {typesModal && <ModalTypes typesModal={typesModal} index={index}/>}
             
 
         </div>

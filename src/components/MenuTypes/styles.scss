@@ -1,11 +1,15 @@
 .ModalTypesContainer {
     background: #0e0e0e;
     width: 10rem;
-    height: 10rem;
-    position: fixed;
+    height: fit-content;
+    // position: fixed;
+
 
     padding: 1rem;
     border-radius: .5rem;
+
+    animation: appear .5s ease;
+
 
 
     ul {
@@ -32,4 +36,13 @@
 
     }
 
+}
+
+@keyframes appear {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 100%;
+    }
 }

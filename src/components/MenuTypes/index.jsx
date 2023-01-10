@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import "./styles.scss"
 
-export function ModalTypes({ typesModal, index }) {
+export function MenuTypes({ index, setTypesMenu,setModalState }) {
 
 
     function turnNotebook(className) {
@@ -12,24 +12,23 @@ export function ModalTypes({ typesModal, index }) {
 
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const modalLocation = document.querySelector(".modal")
-            .getBoundingClientRect()
+    //     const modalLocation = document.querySelector(".modal")
+    //         .getBoundingClientRect()
 
-        const modalTypes = document.querySelector(".ModalTypesContainer")
+    //     const modalTypes = document.querySelector(".ModalTypesContainer")
 
-        modalTypes.style.top = modalLocation.top.toString() + "px"
-        modalTypes.style.left = (modalLocation.right + 10).toString() + "px"
+    //     modalTypes.style.top = modalLocation.top.toString() + "px"
+    //     modalTypes.style.left = (modalLocation.right + 10).toString() + "px"
 
-    }, [typesModal])
+    // }, [typesModal])
 
     return (
-        <div className="ModalTypesContainer ">
+        <div className="ModalTypesContainer " onMouseLeave={() => setTypesMenu(false)}>
 
-            <ul>
+            <ul onMouseDown={()=> setModalState(false)}>
                 <li onMouseDown={() => {
-                    document.querySelector(".modal-wrapper").classList.add("sr-only")
                     turnNotebook("")
                 }}>
                     <p>TXT Texto</p>
@@ -37,7 +36,6 @@ export function ModalTypes({ typesModal, index }) {
 
                 <li onMouseDown={() => {
                     turnNotebook("heading2")
-                    document.querySelector(".modal-wrapper").classList.add("sr-only")
                 }}>
                     <p>H2 Subtítulo</p>
                 </li>

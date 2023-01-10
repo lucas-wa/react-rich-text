@@ -9,34 +9,25 @@ import { useRef } from "react";
 
 export function Notebook({ textValue,
     index,
-    handleAddNotebooks,
     handleSaveText,
-    handleDeleteNotebooks,
-    handleMenuModal,
     setIndexEdited,
+    setModalState,
+    setNotebooks
 }) {
 
-    const [html, setHtml] = useState(textValue);
 
+    
+    function handleAddNotebooks(event, index) {
+        setNotebooks(
+            prevState => {
+                const prev = [...prevState]
 
-    function autoSize(event) {
-        const content = event.target;
+                prev.splice(index + 1, 0, { textType: "text", value: "" })
 
-        content.style.cssText = 'height:auto;'
-        content.style.cssText = 'height:' + (textArea.scrollHeight) + 'px';
+                return prev
+            }
+        )
     }
-
-
-    function handleKeyEvents(event) {
-        if (event.target.value == "" && event.keyCode == 8) {
-            handleDeleteNotebooks()
-        }
-        if (event.ctrlKey && event.keyCode == 66) {
-
-        }
-    }
-
-
 
 
     const divRef = useRef(null)
@@ -96,7 +87,7 @@ export function Notebook({ textValue,
                     className="icons"
                     onMouseDown={(e) => {
                         setIndexEdited(index)
-                        handleMenuModal(index)
+                        setModalState(true)
                     }}
 
                 />
