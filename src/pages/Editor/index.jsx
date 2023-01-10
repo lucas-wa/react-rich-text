@@ -91,7 +91,6 @@ export function Editor() {
         modal_wrapper.classList.toggle("sr-only")
     }
 
-    useEffect(()=>{console.log(notebooks)}, [notebooks]);
 
 
 
@@ -116,7 +115,6 @@ export function Editor() {
                     handleSaveText = {handleSaveText}
                     handleMenuModal = {handleMenuModal}
                     setIndexEdited = {setIndexEdited}
-                    notebooks = {notebooks}
                     />
                 )
             }

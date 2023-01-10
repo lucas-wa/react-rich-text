@@ -1,0 +1,35 @@
+.ModalTypesContainer {
+    background: #0e0e0e;
+    width: 10rem;
+    height: 10rem;
+    position: fixed;
+
+    padding: 1rem;
+    border-radius: .5rem;
+
+
+    ul {
+        list-style: none;
+
+        li {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1rem;
+            /* line-height: 0; */
+            padding: .3rem .5rem;
+            border-radius: .5rem;
+            width: 100%;
+            /* font-size: inherit; */
+            cursor: pointer;
+            transition: background-color .1s ease;
+
+            &:hover {
+                background-color: #2E2E2E;
+
+            }
+        }
+
+    }
+
+}

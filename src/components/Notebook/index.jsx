@@ -14,7 +14,6 @@ export function Notebook({ textValue,
     handleDeleteNotebooks,
     handleMenuModal,
     setIndexEdited,
-    notebooks
 }) {
 
     const [html, setHtml] = useState(textValue);
