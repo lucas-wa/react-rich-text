@@ -8,7 +8,7 @@ import { Modal } from "../../components/Modal";
 export function Editor() {
     const [notebooks, setNotebooks] = useState(
         [
-            { textType: "text", value: "" }
+            { type: "text", value: "" }
         ]);
 
     const [indexEdited, setIndexEdited] = useState(0)
@@ -28,6 +28,8 @@ export function Editor() {
         )
 
     }
+
+
 
 
     return (
@@ -57,6 +59,7 @@ export function Editor() {
                         setIndexEdited={setIndexEdited}
                         setModalState={setModalState}
                         setNotebooks={setNotebooks}
+                        type={notebook.type}
                     />
                 )
             }

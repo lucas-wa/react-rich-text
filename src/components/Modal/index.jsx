@@ -52,6 +52,7 @@ export function Modal({index,
                 index={index}
                 setTypesMenu={setTypesMenu}
                 setModalState={setModalState}
+                setNotebooks={setNotebooks}
                 />}
 
             </div>

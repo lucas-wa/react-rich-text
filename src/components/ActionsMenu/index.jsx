@@ -31,8 +31,9 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
                 const prev = [...prevState]
 
                 const value = prev[index].value
+                const type = prev[index].type
 
-                prev.splice(index + 1, 0, { type: "text", value: value })
+                prev.splice(index + 1, 0, { type: type, value: value })
 
                 return prev
             }

@@ -7,52 +7,54 @@ import "./styles.css";
 import { useRef } from "react";
 
 
+
 export function Notebook({ textValue,
     index,
     handleSaveText,
     setIndexEdited,
     setModalState,
-    setNotebooks
+    setNotebooks,
+    type
 }) {
-
-
+    
+    
     
     function handleAddNotebooks(event, index) {
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
-
+                
                 prev.splice(index + 1, 0, { textType: "text", value: "" })
-
+                
                 return prev
             }
-        )
-    }
-
-
-    const divRef = useRef(null)
-
-    useEffect(() => {
-
-        const observer = new MutationObserver(mutations => {
-            handleSaveText(index, divRef.current.innerHTML)
-            // console.log(difRef.current.ht,m)
-            // setHtml(divRef.current.innerHTML)
-
-        });
-
-        observer.observe(divRef.current, { childList: true, characterData: true, subtree: true });
-
-        // const content = document.querySelector(`.notebook.notebook${index} .content`)
-
-        // content.innerHTML = textValue
-
-        return () => {observer.disconnect()}
-    },
+            )
+        }
+        
+        
+        const divRef = useRef(null)
+        
+        useEffect(() => {
+            
+            const observer = new MutationObserver(mutations => {
+                handleSaveText(index, divRef.current.innerHTML)
+                // console.log(difRef.current.ht,m)
+                // setHtml(divRef.current.innerHTML)
+                
+            });
+            
+            observer.observe(divRef.current, { childList: true, characterData: true, subtree: true });
+            
+            // const content = document.querySelector(`.notebook.notebook${index} .content`)
+            
+            // content.innerHTML = textValue
+            
+            return () => {observer.disconnect()}
+        },
         []);
-
-
-
+        
+        
+        
     useEffect(() => {
         // divRef.current.innerHTML = textValue;
 
@@ -94,7 +96,7 @@ export function Notebook({ textValue,
 
                 <div
                     ref={divRef}
-                    className="content"
+                    className={`content ` + type}
                     contentEditable={true}
                     suppressContentEditableWarning={true}
                     dangerouslySetInnerHTML={{__html: textValue}}

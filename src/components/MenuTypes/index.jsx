@@ -1,14 +1,23 @@
 import { useEffect } from "react"
 import "./styles.scss"
 
-export function MenuTypes({ index, setTypesMenu,setModalState }) {
+export function MenuTypes({ index, setTypesMenu, setModalState, setNotebooks }) {
 
 
     function turnNotebook(className) {
         const notebookContent = document.querySelector(`.notebook${index} .content`)
 
         notebookContent.classList.remove(...notebookContent.classList)
-        notebookContent.classList.add("content", className ? className : null)
+        notebookContent.classList.add("content", className)
+
+        setNotebooks(prevState => {
+            const prev = [...prevState]
+            
+            prev[index].type = className
+
+            return prev
+            
+        })
 
     }
 
@@ -29,7 +38,7 @@ export function MenuTypes({ index, setTypesMenu,setModalState }) {
 
             <ul onMouseDown={()=> setModalState(false)}>
                 <li onMouseDown={() => {
-                    turnNotebook("")
+                    turnNotebook("text")
                 }}>
                     <p>TXT Texto</p>
                 </li>
