@@ -13,6 +13,8 @@ export function Editor() {
 
     const [indexEdited, setIndexEdited] = useState(0)
     const [modalState, setModalState] = useState(false)
+    const [modalRequest, setModalRequest] = useState("")
+    
 
     
     function handleSaveText(index, newValue) {
@@ -31,6 +33,7 @@ export function Editor() {
 
 
 
+    useEffect(()=> console.log(notebooks), [])
 
     return (
         <div className="container">
@@ -44,6 +47,7 @@ export function Editor() {
                     index={indexEdited}
                     setModalState={setModalState}
                     setNotebooks={setNotebooks}
+                    modalRequest={modalRequest}
                 />
             }
 
@@ -58,6 +62,7 @@ export function Editor() {
                         handleSaveText={handleSaveText}
                         setIndexEdited={setIndexEdited}
                         setModalState={setModalState}
+                        setModalRequest={setModalRequest}
                         setNotebooks={setNotebooks}
                         type={notebook.type}
                     />

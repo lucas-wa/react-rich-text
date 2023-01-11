@@ -13,28 +13,29 @@ export function Notebook({ textValue,
     handleSaveText,
     setIndexEdited,
     setModalState,
+    setModalRequest,
     setNotebooks,
     type
 }) {
     
     
     
-    function handleAddNotebooks(event, index) {
+    function handleAddNotebooks(index) {
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
                 
-                prev.splice(index + 1, 0, { textType: "text", value: "" })
+                prev.splice(index + 1, 0, { type: "text", value: "" })
                 
                 return prev
             }
             )
-        }
+    }
         
         
         const divRef = useRef(null)
         
-        useEffect(() => {
+    useEffect(() => {
             
             const observer = new MutationObserver(mutations => {
                 handleSaveText(index, divRef.current.innerHTML)
@@ -51,7 +52,7 @@ export function Notebook({ textValue,
             
             return () => {observer.disconnect()}
         },
-        []);
+    []);
         
         
         
@@ -80,7 +81,11 @@ export function Notebook({ textValue,
 
                 <VscAdd
                     className="icons"
-                    onMouseDown={e => handleAddNotebooks(e, index)}
+                    onMouseDown={() => {
+                        setIndexEdited(index)
+                        setModalRequest("AddNotebook")
+                        setModalState(true)
+                    }}
                 />
 
 
@@ -89,6 +94,7 @@ export function Notebook({ textValue,
                     className="icons"
                     onMouseDown={(e) => {
                         setIndexEdited(index)
+                        setModalRequest("EditNotebook")
                         setModalState(true)
                     }}
 

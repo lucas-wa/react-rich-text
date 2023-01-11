@@ -1,4 +1,4 @@
-.ModalTypesContainer {
+.AddNotebookMenuContainer{
     background: #0e0e0e;
     height: fit-content;
     // width: 10rem;
@@ -9,8 +9,6 @@
     border-radius: .5rem;
 
     animation: appear .5s ease;
-
-
 
     ul {
         list-style: none;
@@ -34,15 +32,5 @@
             }
         }
 
-    }
-
-}
-
-@keyframes appear {
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 100%;
     }
 }

@@ -1,21 +1,25 @@
 import { useEffect } from "react";
 import { useState } from "react"
 import { ActionsMenu } from "../ActionsMenu";
+import { AddNotebookMenu } from "../AddNotebookMenu";
 import { MenuTypes } from "../MenuTypes";
 
 import "./styles.scss"
 
-export function Modal({index, 
-                       setModalState, 
-                       setNotebooks}){
+export function Modal({ index,
+    setModalState,
+    setNotebooks,
+    modalRequest
+ }) {
 
-    const [actionsMenu, setActionMenu] = useState(true);
+    const [addNotebookMenu, setAddNotebookMenu] = useState(modalRequest == "AddNotebook");
+    const [actionsMenu, setActionMenu] = useState(modalRequest == "EditNotebook");
     const [typesMenu, setTypesMenu] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         const notebookLocation = document
-        .querySelector(`.notebook${index}`)
-        .getBoundingClientRect()
+            .querySelector(`.notebook${index}`)
+            .getBoundingClientRect()
 
         const modal = document.querySelector(".modal-wrapper .modal")
 
@@ -28,36 +32,52 @@ export function Modal({index,
     return (
 
         <div className="modal-wrapper"
-        onMouseDown={(e) => {
+            onMouseDown={(e) => {
+                if (e.target.classList.contains("modal-wrapper")) {
+                    setModalState(false)
+                }
+            }}
 
 
-            if(e.target.classList.contains("modal-wrapper")){
-                setModalState(false)
-            }
+        >
 
-        }}>
+            <div className="modal"
+                onMouseLeave={e => {
+                    setModalState(false)
+                }}
+            >
 
-            <div className="modal" >
 
-                {actionsMenu && <ActionsMenu 
-                typesMenu={typesMenu} 
-                index={index} 
-                setNotebooks={setNotebooks}
-                setActionMenu={setActionMenu}
-                setModalState={setModalState}
-                setTypesMenu={setTypesMenu}
+                {addNotebookMenu 
+                && <AddNotebookMenu
+                    typesMenu={typesMenu}
+                    index={index}
+                    setNotebooks={setNotebooks}
+                    setActionMenu={setActionMenu}
+                    setModalState={setModalState}
+                    setTypesMenu={setTypesMenu}
                 />}
 
-                {typesMenu && <MenuTypes 
-                index={index}
-                setTypesMenu={setTypesMenu}
-                setModalState={setModalState}
-                setNotebooks={setNotebooks}
+
+                {actionsMenu && <ActionsMenu
+                    typesMenu={typesMenu}
+                    index={index}
+                    setNotebooks={setNotebooks}
+                    setActionMenu={setActionMenu}
+                    setModalState={setModalState}
+                    setTypesMenu={setTypesMenu}
+                />}
+
+                {typesMenu && <MenuTypes
+                    index={index}
+                    setTypesMenu={setTypesMenu}
+                    setModalState={setModalState}
+                    setNotebooks={setNotebooks}
                 />}
 
             </div>
 
-            
+
 
         </div>
     )
