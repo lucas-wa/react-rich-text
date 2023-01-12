@@ -33,7 +33,7 @@ export function Editor() {
 
 
 
-    useEffect(()=> console.log(notebooks), [])
+    // useEffect(()=> console.log(notebooks), [])
 
     return (
         <div className="container">
@@ -61,8 +61,10 @@ export function Editor() {
                         index={index}
                         handleSaveText={handleSaveText}
                         setIndexEdited={setIndexEdited}
+                        modalState={modalState}
                         setModalState={setModalState}
                         setModalRequest={setModalRequest}
+                        notebooks={notebook}
                         setNotebooks={setNotebooks}
                         type={notebook.type}
                     />

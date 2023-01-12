@@ -12,11 +12,15 @@ export function Notebook({ textValue,
     index,
     handleSaveText,
     setIndexEdited,
+    modalState,
     setModalState,
     setModalRequest,
+    notebooks,
     setNotebooks,
     type
 }) {
+
+    const [iconState, setIconState] = useState(false)
     
     
     
@@ -39,16 +43,10 @@ export function Notebook({ textValue,
             
             const observer = new MutationObserver(mutations => {
                 handleSaveText(index, divRef.current.innerHTML)
-                // console.log(difRef.current.ht,m)
-                // setHtml(divRef.current.innerHTML)
-                
             });
             
             observer.observe(divRef.current, { childList: true, characterData: true, subtree: true });
             
-            // const content = document.querySelector(`.notebook.notebook${index} .content`)
-            
-            // content.innerHTML = textValue
             
             return () => {observer.disconnect()}
         },
@@ -57,13 +55,6 @@ export function Notebook({ textValue,
         
         
     useEffect(() => {
-        // divRef.current.innerHTML = textValue;
-
-        // var target = document.createTextNode("\u0001");
-        // document.getSelection().getRangeAt(1).insertNode(target);
-        // var position = document.querySelector(`.notebook.notebook${index} .content`).innerHTML.indexOf("\u0001");
-        // target.parentNode.removeChild(target);
-
         const range = document.createRange()
         range.selectNodeContents(divRef.current)
         range.collapse(false)
@@ -74,14 +65,38 @@ export function Notebook({ textValue,
 
     }, [textValue]);
 
+    useEffect(()=>{
+
+        const icons = document.querySelectorAll(`.notebook${index} .icons`)
+
+        for(let icon of icons){
+            if(iconState){
+                icon.classList.remove("hide")
+                icon.classList.add("appear")
+            }else if(!modalState){
+                icon.classList.remove("appear")
+                icon.classList.add("hide")
+            }
+        }
+
+    }, [iconState, modalState])
 
     return (
         (
-            <div className={`notebook notebook${index}`}>
+            <div className={`notebook notebook${index}`}
+                onMouseOver={() => {
+                    setIconState(true)
+                }}
+
+                onMouseLeave={() => {
+                    setIconState(false)
+                }}
+            >
 
                 <VscAdd
-                    className="icons"
+                    className={"icons"}
                     onMouseDown={() => {
+                        // document.querySelector(`.notebook${index}`).focus()
                         setIndexEdited(index)
                         setModalRequest("AddNotebook")
                         setModalState(true)
@@ -91,8 +106,9 @@ export function Notebook({ textValue,
 
 
                 <CgMenuGridO
-                    className="icons"
+                    className={"icons"}
                     onMouseDown={(e) => {
+                        // document.querySelector(`.notebook${index}`).focus()
                         setIndexEdited(index)
                         setModalRequest("EditNotebook")
                         setModalState(true)
@@ -106,20 +122,8 @@ export function Notebook({ textValue,
                     contentEditable={true}
                     suppressContentEditableWarning={true}
                     dangerouslySetInnerHTML={{__html: textValue}}
+                    placeholder={"Escreva algo..."}
                 />
-
-                {/* <textarea
-                    rows={1}
-                    type="text"
-                    name=""
-                    id=""
-                    onChange={e => {
-                        const text = e.target.value
-                        autoSize(e)
-                        handleSaveText(e, index, text)
-                    }}
-                    value={textValue}
-                /> */}
 
             </div>
         )

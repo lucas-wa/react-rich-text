@@ -16,6 +16,14 @@
     transition: background-color .3s ease;
 }
 
+.content[placeholder]:empty::before {
+    content: attr(placeholder);
+}
+
+.content[placeholder]:empty:focus::before {
+    content: "";
+}
+
 .notebook .content::placeholder {
     color: #fefefe;
 }
@@ -55,4 +63,32 @@
 
 .heading2 {
     font-size: 1.5rem;
+}
+
+.hide {
+    animation: iconHide .5s ease forwards;
+    opacity:0;
+}
+
+.appear {
+    animation: iconAppear .5s ease forwards;
+    opacity: 100%;
+}
+
+@keyframes iconAppear {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 100%;
+    }
+}
+
+@keyframes iconHide {
+    from{
+        opacity: 100%;
+    }
+    to{
+        opacity: 0;
+    }
 }
