@@ -18,12 +18,12 @@ export function Modal({ index,
 
     useEffect(() => {
         const notebookLocation = document
-            .querySelector(`.notebook${index}`)
+            .querySelector(`.notebook${index} .icons`)
             .getBoundingClientRect()
 
         const modal = document.querySelector(".modal-wrapper .modal")
 
-        modal.style.top = notebookLocation.bottom.toString() + "px"
+        modal.style.top = (notebookLocation.bottom + 10).toString() + "px"
         modal.style.left = notebookLocation.left.toString() + "px"
 
     }, [])

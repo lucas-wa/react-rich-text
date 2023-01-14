@@ -122,7 +122,7 @@ export function Notebook({ textValue,
                     contentEditable={true}
                     suppressContentEditableWarning={true}
                     dangerouslySetInnerHTML={{__html: textValue}}
-                    placeholder={"Escreva algo..."}
+                    placeholder={"Escreva algo"}
                 />
 
             </div>
