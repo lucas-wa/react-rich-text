@@ -8,7 +8,11 @@ import { Modal } from "../../components/Modal";
 export function Editor() {
     const [notebooks, setNotebooks] = useState(
         [
-            { type: "text", value: "" }
+            { 
+                type: "text", 
+                value: "",
+                color: "inherint" 
+            }
         ]);
 
     const [indexEdited, setIndexEdited] = useState(0)
@@ -33,7 +37,7 @@ export function Editor() {
 
 
 
-    // useEffect(()=> console.log(notebooks), [])
+    // useEffect(()=> console.log(notebooks), [notebooks])
 
     return (
         <div className="container">
@@ -64,7 +68,7 @@ export function Editor() {
                         modalState={modalState}
                         setModalState={setModalState}
                         setModalRequest={setModalRequest}
-                        notebooks={notebook}
+                        notebooks={notebooks}
                         setNotebooks={setNotebooks}
                         type={notebook.type}
                     />

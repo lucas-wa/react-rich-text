@@ -1,10 +1,10 @@
-import { BsFillTrashFill } from "react-icons/bs";
+import { BsFillTrashFill, BsPaintBucket } from "react-icons/bs";
 import { HiOutlineDuplicate } from "react-icons/hi";
 import { BsArrowReturnRight } from "react-icons/bs";
 
 import "./styles.scss"
 
-export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState, setTypesMenu }) {
+export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState, setTypesMenu, setColorsMenu }) {
 
 
 
@@ -32,8 +32,9 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
 
                 const value = prev[index].value
                 const type = prev[index].type
-
-                prev.splice(index + 1, 0, { type: type, value: value })
+                const color = prev[index].color
+            
+                prev.splice(index + 1, 0, { type: type, value: value, color })
 
                 return prev
             }
@@ -64,9 +65,21 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
                     <p>Duplicar</p>
                 </li>
 
-                <li onMouseEnter={() => setTypesMenu(true)}>
+                <li onMouseEnter={() => {
+                        setColorsMenu(false)
+                        setTypesMenu(true)
+                    }}>
                     <BsArrowReturnRight />
                     <p>Tornar um</p>
+                </li>
+
+                <li onMouseEnter={e => {
+                    setTypesMenu(false)
+                    setColorsMenu(true)
+                }}
+                >
+                    <BsPaintBucket />
+                    <p>Cor</p>
                 </li>
             </ul>
         </div>

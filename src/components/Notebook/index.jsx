@@ -65,6 +65,7 @@ export function Notebook({ textValue,
 
     }, [textValue]);
 
+
     useEffect(()=>{
 
         const icons = document.querySelectorAll(`.notebook${index} .icons`)
@@ -96,7 +97,6 @@ export function Notebook({ textValue,
                 <VscAdd
                     className={"icons"}
                     onMouseDown={() => {
-                        // document.querySelector(`.notebook${index}`).focus()
                         setIndexEdited(index)
                         setModalRequest("AddNotebook")
                         setModalState(true)
@@ -123,6 +123,9 @@ export function Notebook({ textValue,
                     suppressContentEditableWarning={true}
                     dangerouslySetInnerHTML={{__html: textValue}}
                     placeholder={"Escreva algo"}
+                    style={{
+                        color: notebooks[index].color
+                    }}
                 />
 
             </div>

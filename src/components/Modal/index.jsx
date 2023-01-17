@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react"
 import { ActionsMenu } from "../ActionsMenu";
 import { AddNotebookMenu } from "../AddNotebookMenu";
+import { ColorMenu } from "../ColorMenu";
 import { MenuTypes } from "../MenuTypes";
 
 import "./styles.scss"
@@ -14,6 +15,7 @@ export function Modal({ index,
 
     const [addNotebookMenu, setAddNotebookMenu] = useState(modalRequest == "AddNotebook");
     const [actionsMenu, setActionMenu] = useState(modalRequest == "EditNotebook");
+    const [colorsMenu, setColorsMenu] = useState(modalRequest == "EditColor");
     const [typesMenu, setTypesMenu] = useState(false);
 
     useEffect(() => {
@@ -66,11 +68,19 @@ export function Modal({ index,
                     setActionMenu={setActionMenu}
                     setModalState={setModalState}
                     setTypesMenu={setTypesMenu}
+                    setColorsMenu={setColorsMenu}
                 />}
 
                 {typesMenu && <MenuTypes
                     index={index}
                     setTypesMenu={setTypesMenu}
+                    setModalState={setModalState}
+                    setNotebooks={setNotebooks}
+                />}
+
+                {colorsMenu && <ColorMenu
+                    index={index}
+                    setColorsMenu={setColorsMenu}
                     setModalState={setModalState}
                     setNotebooks={setNotebooks}
                 />}

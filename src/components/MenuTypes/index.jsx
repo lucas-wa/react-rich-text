@@ -21,17 +21,6 @@ export function MenuTypes({ index, setTypesMenu, setModalState, setNotebooks }) 
 
     }
 
-    // useEffect(() => {
-
-    //     const modalLocation = document.querySelector(".modal")
-    //         .getBoundingClientRect()
-
-    //     const modalTypes = document.querySelector(".ModalTypesContainer")
-
-    //     modalTypes.style.top = modalLocation.top.toString() + "px"
-    //     modalTypes.style.left = (modalLocation.right + 10).toString() + "px"
-
-    // }, [typesModal])
 
     return (
         <div className="ModalTypesContainer " onMouseLeave={() => setTypesMenu(false)}>
