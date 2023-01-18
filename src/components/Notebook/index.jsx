@@ -124,7 +124,8 @@ export function Notebook({ textValue,
                     dangerouslySetInnerHTML={{__html: textValue}}
                     placeholder={"Escreva algo"}
                     style={{
-                        color: notebooks[index].color
+                        color: notebooks[index].color,
+                        background: notebooks[index].background
                     }}
                 />
 

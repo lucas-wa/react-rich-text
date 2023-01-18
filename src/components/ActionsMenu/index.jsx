@@ -29,12 +29,8 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
-
-                const value = prev[index].value
-                const type = prev[index].type
-                const color = prev[index].color
-            
-                prev.splice(index + 1, 0, { type: type, value: value, color })
+                
+                prev.splice(index + 1, 0, {...prev[index]})
 
                 return prev
             }
@@ -79,7 +75,7 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
                 }}
                 >
                     <BsPaintBucket />
-                    <p>Cor</p>
+                    <p>Cores</p>
                 </li>
             </ul>
         </div>
