@@ -11,7 +11,8 @@ export function Editor() {
             { 
                 type: "text", 
                 value: "",
-                color: "inherint" 
+                color: "inherint",
+                background: "inherint"
             }
         ]);
 
