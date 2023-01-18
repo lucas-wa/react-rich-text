@@ -12,9 +12,9 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
-                
-                if(prev.length == 1) prev.push({type:"text", text:""})
-                
+
+                if (prev.length == 1) prev.push({ type: "text", text: "" })
+
                 prev.splice(index, 1)
 
 
@@ -29,8 +29,8 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
-                
-                prev.splice(index + 1, 0, {...prev[index]})
+
+                prev.splice(index + 1, 0, { ...prev[index] })
 
                 return prev
             }
@@ -44,10 +44,15 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
 
             <ul>
                 <li onMouseDown={e => {
-                    handleDeleteNotebooks(index)
-                    setModalState(false)
+                        handleDeleteNotebooks(index)
+                        setModalState(false)
+                }}
 
-                }}>
+                    onMouseEnter={() => {
+                        setTypesMenu(false)
+                        setColorsMenu(false)
+                    }}
+                >
                     <BsFillTrashFill />
                     <p>Deletar</p>
                 </li>
@@ -56,15 +61,20 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
                     handleDuplicateNotebook(index)
                     setModalState(false)
                 }}
+
+                    onMouseEnter={() => {
+                        setTypesMenu(false)
+                        setColorsMenu(false)
+                    }}
                 >
                     <HiOutlineDuplicate />
                     <p>Duplicar</p>
                 </li>
 
                 <li onMouseEnter={() => {
-                        setColorsMenu(false)
-                        setTypesMenu(true)
-                    }}>
+                    setColorsMenu(false)
+                    setTypesMenu(true)
+                }}>
                     <BsArrowReturnRight />
                     <p>Tornar um</p>
                 </li>

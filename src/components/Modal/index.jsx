@@ -31,6 +31,7 @@ export function Modal({ index,
     }, [])
 
 
+
     return (
 
         <div className="modal-wrapper"
