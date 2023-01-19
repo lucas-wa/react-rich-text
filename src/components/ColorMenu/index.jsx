@@ -21,8 +21,11 @@ export function ColorMenu({ index, setTypesMenu, setModalState, setNotebooks }) 
 
     function changeNotebookBackground(color){
         const notebookContent = document.querySelector(`.notebook${index} .content`)
+        color = color
+        .replace("rgb", "rgba")
+        .replace(")", ", .3)")
 
-        notebookContent.style.backgroundColor = color.toString()
+        notebookContent.style.backgroundColor = (color.toString())
 
         setNotebooks(prevState => {
             let prev = [...prevState]
@@ -101,7 +104,6 @@ export function ColorMenu({ index, setTypesMenu, setModalState, setNotebooks }) 
                     } else {
                         color = e.target.parentNode.style.color
                     }
-
                     changeNotebookBackground(color)
                     setModalState(false)
                 }}

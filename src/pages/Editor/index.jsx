@@ -19,6 +19,7 @@ export function Editor() {
     const [indexEdited, setIndexEdited] = useState(0)
     const [modalState, setModalState] = useState(false)
     const [modalRequest, setModalRequest] = useState("")
+    const [selectorMenu, setSelectorMenu] = useState(false)
     
 
     
