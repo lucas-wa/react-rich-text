@@ -18,12 +18,13 @@
         scrollbar-color: #fefefe;
         scrollbar-width: 0;
         width:.5rem;
+        background: none;
+        
     }
 
     &::-webkit-scrollbar-track{
-        background-color: none;
+        // background-color: none;
         border-radius: 1rem;
-        width: 0;
     }
 
      &::-webkit-scrollbar-thumb{
