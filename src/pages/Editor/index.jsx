@@ -7,7 +7,7 @@ import { Modal } from "../../components/Modal";
 
 export function Editor() {
 
-    
+
     const [notebooks, setNotebooks] = useState(
         [
             {
@@ -41,7 +41,7 @@ export function Editor() {
 
 
 
-    useEffect(() => console.log(notebooks, texts), [notebooks, texts])
+    // useEffect(() => console.log(notebooks, texts), [notebooks, texts])
 
     return (
         <>
@@ -61,26 +61,26 @@ export function Editor() {
 
 
                 {
-                notebooks.map((notebook, index) => {
+                    notebooks.map((notebook, index) => {
 
-                    return (<Notebook key={notebook.key}
-                        type={notebook.type}
-                        textValue={texts[index]}
-                        index={index}
-                        color={notebook.color}
-                        background={notebook.background}
+                        return (<Notebook key={notebook.key}
+                            type={notebook.type}
+                            textValue={texts[index]}
+                            index={index}
+                            color={notebook.color}
+                            background={notebook.background}
 
 
-                        handleSaveText={handleSaveText}
-                        setSelectorMenu={setSelectorMenu}
-                        setIndexEdited={setIndexEdited}
-                        setModalState={setModalState}
-                        setModalRequest={setModalRequest}
-                        modalState={modalState}
-                    />)
+                            handleSaveText={handleSaveText}
+                            setSelectorMenu={setSelectorMenu}
+                            setIndexEdited={setIndexEdited}
+                            setModalRequest={setModalRequest}
+                            modalState={modalState}
+                            setModalState={setModalState}
+                        />)
+                    }
+                    )
                 }
-                )
-            }
 
             </div>
         </>

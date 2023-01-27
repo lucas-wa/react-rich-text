@@ -19,11 +19,11 @@ export function ColorMenu({ index, setTypesMenu, setModalState, setNotebooks }) 
 
     }
 
-    function changeNotebookBackground(color){
+    function changeNotebookBackground(color) {
         const notebookContent = document.querySelector(`.notebook${index} .content`)
         color = color
-        .replace("rgb", "rgba")
-        .replace(")", ", .3)")
+            .replace("rgb", "rgba")
+            .replace(")", ", .3)")
 
         notebookContent.style.backgroundColor = (color.toString())
 
@@ -38,117 +38,121 @@ export function ColorMenu({ index, setTypesMenu, setModalState, setNotebooks }) 
 
     return (
         <div className="ColorMenuContainer" >
-            <ul
-                onMouseDown={e => {
 
-                    let color;
+            <div className="lists">
+                <ul
+                    onMouseDown={e => {
 
-                    if (e.target.style.color) {
-                        color = e.target.style.color
-                    } else {
-                        color = e.target.parentNode.style.color
-                    }
+                        let color;
 
-                    changeNotebookColor(color)
-                    setModalState(false)
-                }}
-            >
-                <p>Texto</p>
+                        if (e.target.style.color) {
+                            color = e.target.style.color
+                        } else {
+                            color = e.target.parentNode.style.color
+                        }
 
-
-                <li style={{ color: "inherint" }}>
-                    <MdOutlineFormatColorText />
-                    <p>Padrão</p>
-                </li>
-
-                <li style={{ color: "#C0C0C0" }}>
-                    <MdOutlineFormatColorText />
-                    <p>Cinza</p>
-                </li>
-
-                <li style={{ color: "#6495ED" }}>
-                    <MdOutlineFormatColorText />
-                    <p>Azul</p>
-                </li>
-
-                <li style={{ color: "#CD5C5C" }}>
-                    <MdOutlineFormatColorText />
-                    <p>Vermelho</p>
-                </li>
-
-                <li style={{ color: "#90EE90" }}>
-                    <MdOutlineFormatColorText />
-                    <p>Verde</p>
-                </li>
-
-                <li style={{ color: "#CD853F" }}>
-                    <MdOutlineFormatColorText />
-                    <p>Laranja</p>
-                </li>
-
-                <li style={{ color: "#DA70D6" }}>
-                    <MdOutlineFormatColorText />
-                    <p>Rosa</p>
-                </li>
+                        changeNotebookColor(color)
+                        setModalState(false)
+                    }}
+                >
+                    <p>Texto</p>
 
 
-            </ul>
+                    <li style={{ color: "inherint" }}>
+                        <MdOutlineFormatColorText />
+                        <p>Padrão</p>
+                    </li>
 
-            <ul
-                onMouseDown={e => {
+                    <li style={{ color: "#C0C0C0" }}>
+                        <MdOutlineFormatColorText />
+                        <p>Cinza</p>
+                    </li>
 
-                    let color;
+                    <li style={{ color: "#6495ED" }}>
+                        <MdOutlineFormatColorText />
+                        <p>Azul</p>
+                    </li>
 
-                    if (e.target.style.color) {
-                        color = e.target.style.color
-                    } else {
-                        color = e.target.parentNode.style.color
-                    }
-                    changeNotebookBackground(color)
-                    setModalState(false)
-                }}
+                    <li style={{ color: "#CD5C5C" }}>
+                        <MdOutlineFormatColorText />
+                        <p>Vermelho</p>
+                    </li>
 
-            >
-                <p>Cor de fundo</p>
+                    <li style={{ color: "#90EE90" }}>
+                        <MdOutlineFormatColorText />
+                        <p>Verde</p>
+                    </li>
 
-                <li style={{ color: "inherint" }}>
-                    <BsFillGrid1X2Fill />
-                    <p>Padrão</p>
-                </li>
+                    <li style={{ color: "#CD853F" }}>
+                        <MdOutlineFormatColorText />
+                        <p>Laranja</p>
+                    </li>
 
-                <li style={{ color: "#C0C0C0" }}>
-                    <BsFillGrid1X2Fill />
-                    <p>Cinza</p>
-                </li>
-
-                
-                <li style={{ color: "#6495ED" }}>
-                    <BsFillGrid1X2Fill />
-                    <p>Azul</p>
-                </li>
-
-                <li style={{ color: "#CD5C5C" }}>
-                    <BsFillGrid1X2Fill />
-                    <p>Vermelho</p>
-                </li>
-
-                <li style={{ color: "#90EE90" }}>
-                    <BsFillGrid1X2Fill />
-                    <p>Verde</p>
-                </li>
-
-                <li style={{ color: "#CD853F" }}>
-                    <BsFillGrid1X2Fill />
-                    <p>Laranja</p>
-                </li>
-
-                <li style={{ color: "#DA70D6" }}>
-                    <BsFillGrid1X2Fill />
-                    <p>Rosa</p>
-                </li>
+                    <li style={{ color: "#DA70D6" }}>
+                        <MdOutlineFormatColorText />
+                        <p>Rosa</p>
+                    </li>
 
 
-            </ul>
+                </ul>
+
+                <ul
+                    onMouseDown={e => {
+
+                        let color;
+
+                        if (e.target.style.color) {
+                            color = e.target.style.color
+                        } else {
+                            color = e.target.parentNode.style.color
+                        }
+                        changeNotebookBackground(color)
+                        setModalState(false)
+                    }}
+
+                >
+                    <p>Cor de fundo</p>
+
+                    <li style={{ color: "inherint" }}>
+                        <BsFillGrid1X2Fill />
+                        <p>Padrão</p>
+                    </li>
+
+                    <li style={{ color: "#C0C0C0" }}>
+                        <BsFillGrid1X2Fill />
+                        <p>Cinza</p>
+                    </li>
+
+
+                    <li style={{ color: "#6495ED" }}>
+                        <BsFillGrid1X2Fill />
+                        <p>Azul</p>
+                    </li>
+
+                    <li style={{ color: "#CD5C5C" }}>
+                        <BsFillGrid1X2Fill />
+                        <p>Vermelho</p>
+                    </li>
+
+                    <li style={{ color: "#90EE90" }}>
+                        <BsFillGrid1X2Fill />
+                        <p>Verde</p>
+                    </li>
+
+                    <li style={{ color: "#CD853F" }}>
+                        <BsFillGrid1X2Fill />
+                        <p>Laranja</p>
+                    </li>
+
+                    <li style={{ color: "#DA70D6" }}>
+                        <BsFillGrid1X2Fill />
+                        <p>Rosa</p>
+                    </li>
+
+
+                </ul>
+            </div>
+
         </div>
     )
 }
