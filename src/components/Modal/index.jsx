@@ -4,13 +4,16 @@ import { ActionsMenu } from "../ActionsMenu";
 import { AddNotebookMenu } from "../AddNotebookMenu";
 import { ColorMenu } from "../ColorMenu";
 import { MenuTypes } from "../MenuTypes";
+import { SelectorMenu } from "../SelectorMenu";
 
 import "./styles.scss"
 
 export function Modal({ index,
     setModalState,
     setNotebooks,
-    modalRequest
+    modalRequest,
+    selectorMenu,
+    setTexts,
  }) {
 
     const [addNotebookMenu, setAddNotebookMenu] = useState(modalRequest == "AddNotebook");
@@ -34,7 +37,9 @@ export function Modal({ index,
 
     return (
 
-        <div className="modal-wrapper"
+        <div className={
+            "modal-wrapper"
+        }
             onMouseDown={(e) => {
                 if (e.target.classList.contains("modal-wrapper")) {
                     setModalState(false)
@@ -59,6 +64,7 @@ export function Modal({ index,
                     setActionMenu={setActionMenu}
                     setModalState={setModalState}
                     setTypesMenu={setTypesMenu}
+                    setTexts={setTexts}
                 />}
 
 
@@ -70,6 +76,7 @@ export function Modal({ index,
                     setModalState={setModalState}
                     setTypesMenu={setTypesMenu}
                     setColorsMenu={setColorsMenu}
+                    setTexts={setTexts}
                 />}
 
                 {typesMenu && <MenuTypes
@@ -85,6 +92,11 @@ export function Modal({ index,
                     setModalState={setModalState}
                     setNotebooks={setNotebooks}
                 />}
+
+                {
+                    selectorMenu &&
+                    <SelectorMenu/>
+                }
 
             </div>
 

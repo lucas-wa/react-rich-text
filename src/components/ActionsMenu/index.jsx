@@ -3,17 +3,41 @@ import { HiOutlineDuplicate } from "react-icons/hi";
 import { BsArrowReturnRight } from "react-icons/bs";
 
 import "./styles.scss"
+import shortid from "shortid";
 
-export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState, setTypesMenu, setColorsMenu }) {
+export function ActionsMenu({
+    setNotebooks,
+    index,
+    setActionMenu,
+    setModalState,
+    setTypesMenu,
+    setColorsMenu,
+    setTexts }) {
 
 
 
     function handleDeleteNotebooks(index) {
+
+        setTexts(prevState => {
+            let prev = [...prevState];
+
+            if (prev.length == 1) prev.push("");
+
+            prev.splice(index, 1);
+
+            return prev;
+        })
+
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
 
-                if (prev.length == 1) prev.push({ type: "text", text: "" })
+                if (prev.length == 1) prev.push({
+                    key: shortid.generate(),
+                    type: "text",
+                    color: "inherint",
+                    background: "inherint"
+                })
 
                 prev.splice(index, 1)
 
@@ -26,11 +50,31 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
     }
 
     function handleDuplicateNotebook(index) {
+
+        setTexts(prevState => {
+            let prev = [...prevState];
+
+            prev.splice(index + 1, 0, prev[index]);
+
+            return prev;
+        })
+
         setNotebooks(
             prevState => {
                 const prev = [...prevState]
 
-                prev.splice(index + 1, 0, { ...prev[index] })
+                const { type, color, background } = prev[index];
+
+                prev.splice(index + 1, 0,
+                    {
+                        key: shortid.generate(),
+                        type,
+                        color,
+                        background
+                    }
+                )
+
+                prev[index + 1].key = shortid.generate();
 
                 return prev
             }
@@ -44,8 +88,8 @@ export function ActionsMenu({ setNotebooks, index, setActionMenu, setModalState,
 
             <ul>
                 <li onMouseDown={e => {
-                        handleDeleteNotebooks(index)
-                        setModalState(false)
+                    handleDeleteNotebooks(index)
+                    setModalState(false)
                 }}
 
                     onMouseEnter={() => {

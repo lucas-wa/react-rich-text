@@ -5,76 +5,36 @@ import { CgMenuGridO } from "react-icons/cg"
 import { Modal } from "../Modal"
 import "./styles.css";
 import { useRef } from "react";
+import ContentEditable from "react-contenteditable";
 
 
 
-export function Notebook({ textValue,
+export function Notebook({
+    modalState,
+    setModalRequest,
+    setModalState,
+    setIndexEdited,
+    textValue,
     index,
     handleSaveText,
-    setIndexEdited,
-    modalState,
-    setModalState,
-    setModalRequest,
-    notebooks,
-    setNotebooks,
-    type
-}) {
+    background,
+    color,
+    type,
+    setSelectorMenu }) {
 
     const [iconState, setIconState] = useState(false)
-    
-    
-    
-    function handleAddNotebooks(index) {
-        setNotebooks(
-            prevState => {
-                const prev = [...prevState]
-                
-                prev.splice(index + 1, 0, { type: "text", value: "" })
-                
-                return prev
-            }
-            )
-    }
-        
-        
-        const divRef = useRef(null)
-        
+
+    const divRef = useRef(null)
+
     useEffect(() => {
-            
-            const observer = new MutationObserver(mutations => {
-                handleSaveText(index, divRef.current.innerHTML)
-            });
-            
-            observer.observe(divRef.current, { childList: true, characterData: true, subtree: true });
-            
-            
-            return () => {observer.disconnect()}
-        },
-    []);
-        
-        
-        
-    useEffect(() => {
-        const range = document.createRange()
-        range.selectNodeContents(divRef.current)
-        range.collapse(false)
-
-        const selection = document.getSelection();
-        selection.removeAllRanges()
-        selection.addRange(range)
-
-    }, [textValue]);
-
-
-    useEffect(()=>{
 
         const icons = document.querySelectorAll(`.notebook${index} .icons`)
 
-        for(let icon of icons){
-            if(iconState){
+        for (let icon of icons) {
+            if (iconState) {
                 icon.classList.remove("hide")
                 icon.classList.add("appear")
-            }else if(!modalState){
+            } else if (!modalState) {
                 icon.classList.remove("appear")
                 icon.classList.add("hide")
             }
@@ -83,53 +43,60 @@ export function Notebook({ textValue,
     }, [iconState, modalState])
 
     return (
-        (
-            <div className={`notebook notebook${index}`}
-                onMouseOver={() => {
-                    setIconState(true)
+
+
+
+        <div className={`notebook notebook${index}`}
+            onMouseOver={() => {
+                setIconState(true)
+            }}
+
+            onMouseLeave={() => {
+                setIconState(false)
+            }}
+
+            onBlur={() => {
+                handleSaveText(index, divRef.current.innerHTML)
+            }}
+        >
+
+            <VscAdd
+                className={"icons"}
+                onMouseDown={() => {
+                    setModalRequest("AddNotebook")
+                    setIndexEdited(index)
+                    setModalState(true)
+                }}
+            />
+
+
+
+            <CgMenuGridO
+                className={"icons"}
+                onMouseDown={(e) => {
+                    document.querySelector(`.notebook${index}`).focus()
+                    setModalRequest("EditNotebook")
+                    setIndexEdited(index)
+                    setModalState(true)
                 }}
 
-                onMouseLeave={() => {
-                    setIconState(false)
+            />
+
+
+            <ContentEditable
+                innerRef={divRef}
+                className={`content ${type}`}
+                html={textValue}
+                placeholder={"Escreva algo"}
+                onChange={() => handleSaveText(index, divRef.current.innerHTML)}
+                onSelectCapture={() => {
                 }}
-            >
+                style={{
+                    color,
+                    background
+                }}
+            />
+        </div>
 
-                <VscAdd
-                    className={"icons"}
-                    onMouseDown={() => {
-                        setIndexEdited(index)
-                        setModalRequest("AddNotebook")
-                        setModalState(true)
-                    }}
-                />
-
-
-
-                <CgMenuGridO
-                    className={"icons"}
-                    onMouseDown={(e) => {
-                        // document.querySelector(`.notebook${index}`).focus()
-                        setIndexEdited(index)
-                        setModalRequest("EditNotebook")
-                        setModalState(true)
-                    }}
-
-                />
-
-                <div
-                    ref={divRef}
-                    className={`content ` + type}
-                    contentEditable={true}
-                    suppressContentEditableWarning={true}
-                    dangerouslySetInnerHTML={{__html: textValue}}
-                    placeholder={"Escreva algo"}
-                    style={{
-                        color: notebooks[index].color,
-                        background: notebooks[index].background
-                    }}
-                />
-
-            </div>
-        )
     )
 }

@@ -16,6 +16,8 @@
     transition: background-color .3s ease;
 }
 
+
+
 .content[placeholder]:empty::before {
     content: attr(placeholder);
 }
