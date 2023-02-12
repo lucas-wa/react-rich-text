@@ -4,6 +4,7 @@ import { BsArrowReturnRight } from "react-icons/bs";
 
 import "./styles.scss"
 import shortid from "shortid";
+import { useEffect } from "react";
 
 export function ActionsMenu({
     setNotebooks,
@@ -22,11 +23,11 @@ export function ActionsMenu({
             let prev = [...prevState];
 
             if (prev.length == 1) prev.push("");
+            
+            prev.splice(index, 1)
 
-            prev.splice(index, 1);
-
-            return prev;
-        })
+            return prev
+        });
 
         setNotebooks(
             prevState => {
@@ -54,10 +55,10 @@ export function ActionsMenu({
         setTexts(prevState => {
             let prev = [...prevState];
 
-            prev.splice(index + 1, 0, prev[index]);
+            prev.splice(index + 1, 0, prev[index])
 
-            return prev;
-        })
+            return prev
+        });
 
         setNotebooks(
             prevState => {
@@ -79,7 +80,15 @@ export function ActionsMenu({
                 return prev
             }
         )
+
+
+        setTimeout(() => {
+            const originalNotebookContent = document.querySelector(`.notebook${index} .content`).innerHTML;
+            const duplicatedNotebook = document.querySelector(`.notebook${index + 1} .content`);
+            duplicatedNotebook.innerHTML = originalNotebookContent;
+        }, 0);
     }
+
 
     return (
 

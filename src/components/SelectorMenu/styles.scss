@@ -1,5 +1,12 @@
-.SelectorMenuContainer{
-    width: 10rem;
-    height:10rem;
-    background-color: black;
+.SelectorMenuContainer {
+    background: black;
+    border-radius: .5rem;
+    padding: .5rem;
+
+    ul {
+        display: flex;
+        gap: .5rem;
+        justify-content: center;
+        align-items: center;
+    }
 }

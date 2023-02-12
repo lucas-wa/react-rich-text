@@ -10,14 +10,13 @@ export function AddNotebookMenu({
 
     function handleAddNotebooks(index, type) {
 
-        
         setTexts(prevState => {
-            let prev = [...prevState]
+            let prev = [...prevState];
 
             prev.splice(index + 1, 0, "")
 
-            return prev; 
-        })
+            return prev
+        });
 
         setNotebooks(
             prevState => {
