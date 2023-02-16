@@ -2,14 +2,14 @@ import './styles.scss'
 import { MdOutlineFormatColorText } from "react-icons/md"
 import { BsFillGrid1X2Fill } from "react-icons/bs"
 
-export function ColorMenu({ index, setTypesMenu, setModalState, setNotebooks }) {
+export function ColorMenu({ index, setModalState, setCells }) {
 
     function changeNotebookColor(color) {
-        const notebookContent = document.querySelector(`.notebook${index} .content`)
+        const cellContent = document.querySelector(`.cell${index} .content`)
 
-        notebookContent.style.color = color.toString()
+        cellContent.style.color = color.toString()
 
-        setNotebooks(prevState => {
+        setCells(prevState => {
             let prev = [...prevState]
 
             prev[index].color = color
@@ -20,14 +20,14 @@ export function ColorMenu({ index, setTypesMenu, setModalState, setNotebooks }) 
     }
 
     function changeNotebookBackground(color) {
-        const notebookContent = document.querySelector(`.notebook${index} .content`)
+        const cellContent = document.querySelector(`.cell${index} .content`)
         color = color
             .replace("rgb", "rgba")
             .replace(")", ", .3)")
 
-        notebookContent.style.backgroundColor = (color.toString())
+        cellContent.style.backgroundColor = (color.toString())
 
-        setNotebooks(prevState => {
+        setCells(prevState => {
             let prev = [...prevState]
 
             prev[index].background = color

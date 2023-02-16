@@ -1,16 +1,13 @@
-import { VscAdd } from "react-icons/vsc";
-import { BsFillTrashFill } from "react-icons/bs"
-import { useEffect, useState } from "react";
-import { CgChevronDoubleLeft, CgMenuGridO } from "react-icons/cg"
-import { Modal } from "../Modal"
 import "./styles.css";
+import { VscAdd } from "react-icons/vsc";
+import { useState } from "react";
+import { CgMenuGridO } from "react-icons/cg"
 import { useRef } from "react";
 import ContentEditable from "react-contenteditable";
 
 
 
-export function Notebook({
-    setNotebooks,
+export function Cell({
     setIndexEdited,
     setModalRequest,
     setModalState,
@@ -26,34 +23,7 @@ export function Notebook({
     const divRef = useRef(null);
 
 
-    const [iconState, setIconState] = useState(false)
-
-    
-
-    useEffect(() => {
-
-
-        const icons = document.querySelectorAll(`.notebook${index} .icons`)
-
-
-
-        for (let icon of icons) {
-            icon.classList.remove(iconState ? "hide" : "appear")
-            icon.classList.add(iconState ? "appear" : "hide")
-        }
-
-
-        // for (let icon of icons) {
-        //     if (iconState) {
-        //         icon.classList.remove("hide")
-        //         icon.classList.add("appear")
-        //     } else if (!modalState) {
-        //         icon.classList.remove("appear")
-        //         icon.classList.add("hide")
-        //     }
-        // }
-
-    }, [iconState])
+    const [iconState, setIconState] = useState(false);
 
 
     return (
@@ -61,7 +31,7 @@ export function Notebook({
         <>
 
 
-            <div className={`notebook notebook${index}`}
+            <div className={`cell cell${index}`}
                 onMouseOver={() => {
                     setIconState(true)
                 }}
@@ -72,7 +42,7 @@ export function Notebook({
             >
 
                 <VscAdd
-                    className={"icons"}
+                    className={`icons` + ` ${iconState ? 'appear' : 'hide'}`}
                     onMouseDown={() => {
                         setModalRequest("AddNotebook")
                         setIndexEdited(index)
@@ -83,9 +53,8 @@ export function Notebook({
 
 
                 <CgMenuGridO
-                    className={"icons"}
+                    className={`icons` + ` ${iconState ? 'appear' : 'hide'}`}
                     onMouseDown={(e) => {
-                        // document.querySelector(`.notebook${index}`).focus()
                         setModalRequest("EditNotebook")
                         setIndexEdited(index)
                         setModalState(true)

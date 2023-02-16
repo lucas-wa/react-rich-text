@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react"
 import { ActionsMenu } from "../ActionsMenu";
-import { AddNotebookMenu } from "../AddNotebookMenu";
+import { AddCellsMenu } from "../AddCellsMenu";
 import { ColorMenu } from "../ColorMenu";
 import { MenuTypes } from "../MenuTypes";
 import { SelectorMenu } from "../SelectorMenu";
@@ -11,10 +11,9 @@ import "./styles.scss"
 export function Modal({ 
     index,
     setModalState,
-    setNotebooks,
+    setCells,
     modalRequest,
     setTexts,
-    cursorPosition
 }) {
 
     const [addNotebookMenu, setAddNotebookMenu] = useState(modalRequest == "AddNotebook");
@@ -31,12 +30,12 @@ export function Modal({
         
         if (modalRequest !== "SelectorMenu") {
 
-            const notebookLocation = document
-            .querySelector(`.notebook${index} .icons`)
+            const cellLocation = document
+            .querySelector(`.cell${index} .icons`)
             .getBoundingClientRect()
 
-            modal.style.top = (notebookLocation.bottom + 10).toString() + "px"
-            modal.style.left = notebookLocation.left.toString() + "px"
+            modal.style.top = (cellLocation.bottom + 10).toString() + "px"
+            modal.style.left = cellLocation.left.toString() + "px"
 
         } else {
 
@@ -75,17 +74,14 @@ export function Modal({
         >
 
             <div className="modal"
-                // onMouseLeave={e => {
-                //     setModalState(false)
-                // }}
             >
 
 
                 {addNotebookMenu
-                    && <AddNotebookMenu
+                    && <AddCellsMenu
                         typesMenu={typesMenu}
                         index={index}
-                        setNotebooks={setNotebooks}
+                        setCells={setCells}
                         setActionMenu={setActionMenu}
                         setModalState={setModalState}
                         setTypesMenu={setTypesMenu}
@@ -96,7 +92,7 @@ export function Modal({
                 {actionsMenu && <ActionsMenu
                     typesMenu={typesMenu}
                     index={index}
-                    setNotebooks={setNotebooks}
+                    setCells={setCells}
                     setActionMenu={setActionMenu}
                     setModalState={setModalState}
                     setTypesMenu={setTypesMenu}
@@ -108,14 +104,14 @@ export function Modal({
                     index={index}
                     setTypesMenu={setTypesMenu}
                     setModalState={setModalState}
-                    setNotebooks={setNotebooks}
+                    setCells={setCells}
                 />}
 
                 {colorsMenu && <ColorMenu
                     index={index}
                     setColorsMenu={setColorsMenu}
                     setModalState={setModalState}
-                    setNotebooks={setNotebooks}
+                    setCells={setCells}
                 />}
 
                 {
@@ -128,8 +124,6 @@ export function Modal({
                 }
 
             </div>
-
-
 
         </div>
     )

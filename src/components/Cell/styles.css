@@ -1,8 +1,8 @@
-.notebook {
+.cell {
     /* position: relative; */
 }
 
-.notebook .content {
+.cell .content {
     width: 100%;
     min-height: 2.8rem;
     padding: 10px;
@@ -26,20 +26,20 @@
     content: "";
 }
 
-.notebook .content::placeholder {
+.cell .content::placeholder {
     color: #fefefe;
 }
 
-.notebook .content:hover,
-.notebook .content:focus{
+.cell .content:hover,
+.cell .content:focus{
     background: #fff4;
 }
 
-.notebook .content i{
+.cell .content i{
     background: none;
 }
 
-.notebook {
+.cell {
     width: 100%;
     display: flex;
     justify-content: center;

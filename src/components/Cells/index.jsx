@@ -1,11 +1,11 @@
 import { useState } from "react";
 import shortid from "shortid";
 import { Modal } from "../Modal";
-import { Notebook } from "../Notebook";
+import { Cell } from "../Cell";
 import "./styles.scss"
 
 export function Cells() {
-    const [notebooks, setNotebooks] = useState(
+    const [cells, setCells] = useState(
         [
             {
                 key: shortid.generate(),
@@ -42,7 +42,7 @@ export function Cells() {
                 <Modal
                     index={indexEdited}
                     setModalState={setModalState}
-                    setNotebooks={setNotebooks}
+                    setCells={setCells}
                     modalRequest={modalRequest}
                     setTexts={setTexts}
                 />
@@ -56,19 +56,17 @@ export function Cells() {
 
 
                 {
-                    notebooks.map((notebook, index) => {
+                    cells.map((cell, index) => {
 
-                        // console.log("Renderizou")
-
-                        return (<Notebook key={notebook.key}
-                            type={notebook.type}
+                        return (<Cell key={cell.key}
+                            type={cell.type}
                             index={index}
-                            color={notebook.color}
-                            background={notebook.background}
+                            color={cell.color}
+                            background={cell.background}
                             textValue={texts[index]}
                             setTexts={setTexts}
 
-                            setNotebooks={setNotebooks}
+                            setCells={setCells}
                             handleSaveText={handleSaveText}
                             setIndexEdited={setIndexEdited}
                             setModalRequest={setModalRequest}

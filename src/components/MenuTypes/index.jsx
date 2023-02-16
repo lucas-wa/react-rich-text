@@ -1,16 +1,15 @@
-import { useEffect } from "react"
 import "./styles.scss"
 
-export function MenuTypes({ index, setTypesMenu, setModalState, setNotebooks }) {
+export function MenuTypes({ index, setTypesMenu, setModalState, setCells }) {
 
 
-    function turnNotebook(className) {
-        const notebookContent = document.querySelector(`.notebook${index} .content`)
+    function handleTurnCell(className) {
+        const cellContent = document.querySelector(`.cell${index} .content`)
 
-        notebookContent.classList.remove(...notebookContent.classList)
-        notebookContent.classList.add("content", className)
+        cellContent.classList.remove(...cellContent.classList)
+        cellContent.classList.add("content", className)
 
-        setNotebooks(prevState => {
+        setCells(prevState => {
             const prev = [...prevState]
             
             prev[index].type = className
@@ -27,13 +26,13 @@ export function MenuTypes({ index, setTypesMenu, setModalState, setNotebooks }) 
 
             <ul onMouseDown={()=> setModalState(false)}>
                 <li onMouseDown={() => {
-                    turnNotebook("text")
+                    handleTurnCell("text")
                 }}>
                     <p>TXT Texto</p>
                 </li>
 
                 <li onMouseDown={() => {
-                    turnNotebook("heading2")
+                    handleTurnCell("heading2")
                 }}>
                     <p>H2 Subtítulo</p>
                 </li>

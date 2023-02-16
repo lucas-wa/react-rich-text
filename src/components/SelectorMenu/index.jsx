@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { useRef } from "react"
 import { BsFillGrid1X2Fill, BsFillTrashFill } from "react-icons/bs"
 import { BiBold, BiItalic } from "react-icons/bi"
 import { MdOutlineFormatColorText } from "react-icons/md"
@@ -24,29 +22,6 @@ export function SelectorMenu({
 
     }
 
-    useEffect(() => {
-
-        // const selection = document
-        // .getSelection()
-
-        // const range = selection.getRangeAt(0)
-
-        // // range.setStart(selection.anchorNode, selection.anchorOffset)
-        // // range.setEnd(selection.focusNode, selection.focusOffset)
-
-        // const cloneRange = range.cloneContents()
-
-        // const span = document.createElement("span")
-
-        // // span.classList.add("line_text_selected")
-
-        // range.surroundContents(span)
-        // console.log(document.querySelector(`.notebook${index} .content`).innerHTML)
-        // // console.log(span)
-        // handleSaveText(index, document.querySelector(`.notebook${index} .content`).innerHTML)
-
-
-    }, []);
 
     return (
         <div className="SelectorMenuContainer"
@@ -57,9 +32,11 @@ export function SelectorMenu({
 
                 <li
                     onMouseDown={e => {
-                        e.preventDefault()
+                        e.preventDefault();
 
-                        document.execCommand("bold")
+                        document.execCommand("bold");
+
+                        setModalState(false);
 
                         /* Trying to find a pollyfill for .execCommand() */
 
@@ -89,7 +66,7 @@ export function SelectorMenu({
 
 
 
-                        // const div = document.querySelector(`.notebook${index} .content`).innerHTML;
+                        // const div = document.querySelector(`.cell${index} .content`).innerHTML;
 
 
 
@@ -103,7 +80,9 @@ export function SelectorMenu({
                 <li
                     onMouseDown={e => {
                         e.preventDefault()
-                        document.execCommand("italic")
+                        document.execCommand("italic");
+                        setModalState(false);
+
                     }}
                 >
                     <BiItalic />
@@ -112,7 +91,9 @@ export function SelectorMenu({
                 <li
                     onClick={e => {
                         e.preventDefault();
-                        document.execCommand("underline")
+                        document.execCommand("underline");
+                        setModalState(false);
+
                     }}
                 >
                     <MdOutlineFormatColorText />
@@ -121,8 +102,9 @@ export function SelectorMenu({
                 <li onClick={e => {
                     e.preventDefault();
                     document.getSelection().deleteFromDocument()
-                    const div = document.querySelector(`.notebook${index} .content`).innerHTML;
-                    handleSaveText(index, div)
+                    const div = document.querySelector(`.cell${index} .content`).innerHTML;
+                    handleSaveText(index, div);
+                    setModalState(false);
                 }}>
                     <BsFillTrashFill />
                 </li>

@@ -4,12 +4,10 @@ import { BsArrowReturnRight } from "react-icons/bs";
 
 import "./styles.scss"
 import shortid from "shortid";
-import { useEffect } from "react";
 
 export function ActionsMenu({
-    setNotebooks,
+    setCells,
     index,
-    setActionMenu,
     setModalState,
     setTypesMenu,
     setColorsMenu,
@@ -17,7 +15,7 @@ export function ActionsMenu({
 
 
 
-    function handleDeleteNotebooks(index) {
+    function handleDeleteCells(index) {
 
         setTexts(prevState => {
             let prev = [...prevState];
@@ -29,7 +27,7 @@ export function ActionsMenu({
             return prev
         });
 
-        setNotebooks(
+        setCells(
             prevState => {
                 const prev = [...prevState]
 
@@ -50,7 +48,7 @@ export function ActionsMenu({
 
     }
 
-    function handleDuplicateNotebook(index) {
+    function handleDuplicateCells(index) {
 
         setTexts(prevState => {
             let prev = [...prevState];
@@ -60,7 +58,7 @@ export function ActionsMenu({
             return prev
         });
 
-        setNotebooks(
+        setCells(
             prevState => {
                 const prev = [...prevState]
 
@@ -81,12 +79,6 @@ export function ActionsMenu({
             }
         )
 
-
-        setTimeout(() => {
-            const originalNotebookContent = document.querySelector(`.notebook${index} .content`).innerHTML;
-            const duplicatedNotebook = document.querySelector(`.notebook${index + 1} .content`);
-            duplicatedNotebook.innerHTML = originalNotebookContent;
-        }, 0);
     }
 
 
@@ -97,7 +89,7 @@ export function ActionsMenu({
 
             <ul>
                 <li onMouseDown={e => {
-                    handleDeleteNotebooks(index)
+                    handleDeleteCells(index)
                     setModalState(false)
                 }}
 
@@ -111,7 +103,7 @@ export function ActionsMenu({
                 </li>
 
                 <li onMouseDown={e => {
-                    handleDuplicateNotebook(index)
+                    handleDuplicateCells(index)
                     setModalState(false)
                 }}
 

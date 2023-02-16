@@ -1,14 +1,14 @@
 import shortid from "shortid"
 import "./styles.scss"
 
-export function AddNotebookMenu({
-    setNotebooks,
+export function AddCellsMenu({
+    setCells,
     index,
     setModalState,
     setTexts
 }) {
 
-    function handleAddNotebooks(index, type) {
+    function handleAddCells(index, type) {
 
         setTexts(prevState => {
             let prev = [...prevState];
@@ -18,7 +18,7 @@ export function AddNotebookMenu({
             return prev
         });
 
-        setNotebooks(
+        setCells(
             prevState => {
                 const prev = [...prevState]
 
@@ -40,17 +40,17 @@ export function AddNotebookMenu({
     }
 
     return (
-        <div className="AddNotebookMenuContainer">
+        <div className="AddCellsMenuContainer">
             <ul>
                 <li onMouseDown={() => {
-                    handleAddNotebooks(index, "text")
+                    handleAddCells(index, "text")
                     setModalState(false)
                 }}>
                     <p>TXT Texto</p>
                 </li>
 
                 <li onMouseDown={() => {
-                    handleAddNotebooks(index, "heading2")
+                    handleAddCells(index, "heading2")
                     setModalState(false)
 
                 }}>
