@@ -6,6 +6,7 @@ import { useRef } from "react";
 import ContentEditable from "react-contenteditable";
 
 
+import CodeEditor from '@uiw/react-textarea-code-editor';
 
 export function Cell({
     setIndexEdited,
@@ -24,6 +25,7 @@ export function Cell({
 
 
     const [iconState, setIconState] = useState(false);
+
 
 
     return (
@@ -62,27 +64,42 @@ export function Cell({
 
                 />
 
+                {(type !== "codeBlock") ?
 
-                <ContentEditable
-                    innerRef={divRef}
-                    className={`content ${type}`}
-                    html={textValue}
-                    placeholder={"Escreva algo"}
-                    onChange={() => handleSaveText(index, divRef.current.innerHTML)}
-                    onSelect={e => {
+                    <ContentEditable
+                        innerRef={divRef}
+                        className={`content ${type}`}
+                        html={textValue}
+                        placeholder={"Escreva algo"}
+                        onChange={() => handleSaveText(index, divRef.current.innerHTML)}
+                        onSelect={e => {
+                            if (document.getSelection().toString().length > 0) {
+                                setIndexEdited(index)
+                                setModalRequest("SelectorMenu")
+                                setModalState(true)
+                            }
+                        }}
+                        style={{
+                            color,
+                            background
+                        }}
+                    />
+                    :
+                    <CodeEditor
+                        className={`codeContent ${type}`}
+                        value={textValue}
+                        language="js"
+                        placeholder="Escreva algo"
+                        onChange={e => handleSaveText(index, e.target.value)}
+                        padding={15}
+                        style={{
+                            fontFamily: 'Poppins, ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono, Menlo, monospace',
+                            width: "100%",
+                            zIndex: 0,
 
+                        }}
+                    />}
 
-                        if (document.getSelection().toString().length > 0) {
-                            setIndexEdited(index)
-                            setModalRequest("SelectorMenu")
-                            setModalState(true)
-                        }
-                    }}
-                    style={{
-                        color,
-                        background
-                    }}
-                />
             </div>
         </>
 

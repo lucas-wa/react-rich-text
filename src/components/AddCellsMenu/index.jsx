@@ -1,6 +1,10 @@
 import shortid from "shortid"
 import "./styles.scss"
 
+import { BiCodeAlt } from "react-icons/bi"
+import { RiHeading, RiText } from "react-icons/ri"
+
+
 export function AddCellsMenu({
     setCells,
     index,
@@ -46,7 +50,8 @@ export function AddCellsMenu({
                     handleAddCells(index, "text")
                     setModalState(false)
                 }}>
-                    <p>TXT Texto</p>
+                    <RiText/>
+                    <p>Texto</p>
                 </li>
 
                 <li onMouseDown={() => {
@@ -54,7 +59,17 @@ export function AddCellsMenu({
                     setModalState(false)
 
                 }}>
-                    <p>H2 Subtítulo</p>
+                    <RiHeading/>
+                    <p>Subtítulo</p>
+                </li>
+
+                <li onMouseDown={() => {
+                    handleAddCells(index, "codeBlock")
+                    setModalState(false)
+
+                }}>
+                    <BiCodeAlt/>  
+                    <p>Código</p>
                 </li>
             </ul>
         </div>

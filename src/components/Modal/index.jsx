@@ -3,7 +3,7 @@ import { useState } from "react"
 import { ActionsMenu } from "../ActionsMenu";
 import { AddCellsMenu } from "../AddCellsMenu";
 import { ColorMenu } from "../ColorMenu";
-import { MenuTypes } from "../MenuTypes";
+import { TypesMenu } from "../TypesMenu";
 import { SelectorMenu } from "../SelectorMenu";
 
 import "./styles.scss"
@@ -100,7 +100,7 @@ export function Modal({
                     setTexts={setTexts}
                 />}
 
-                {typesMenu && <MenuTypes
+                {typesMenu && <TypesMenu
                     index={index}
                     setTypesMenu={setTypesMenu}
                     setModalState={setModalState}

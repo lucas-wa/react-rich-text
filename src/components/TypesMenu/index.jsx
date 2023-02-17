@@ -1,10 +1,16 @@
 import "./styles.scss"
 
-export function MenuTypes({ index, setTypesMenu, setModalState, setCells }) {
+import { BiCodeAlt } from "react-icons/bi"
+import { RiHeading, RiText } from "react-icons/ri"
+
+export function TypesMenu({ index, setTypesMenu, setModalState, setCells }) {
 
 
     function handleTurnCell(className) {
-        const cellContent = document.querySelector(`.cell${index} .content`)
+        const cellContent = 
+        
+        document.querySelector(`.cell${index} .content`) ||
+        document.querySelector(`.cell${index} .codeContent`)
 
         cellContent.classList.remove(...cellContent.classList)
         cellContent.classList.add("content", className)
@@ -28,13 +34,22 @@ export function MenuTypes({ index, setTypesMenu, setModalState, setCells }) {
                 <li onMouseDown={() => {
                     handleTurnCell("text")
                 }}>
-                    <p>TXT Texto</p>
+                    <RiText/>
+                    <p>Texto</p>
                 </li>
 
                 <li onMouseDown={() => {
                     handleTurnCell("heading2")
                 }}>
-                    <p>H2 Subtítulo</p>
+                    <RiHeading/>
+                    <p>Subtítulo</p>
+                </li>
+
+                <li onMouseDown={() => {
+                    handleTurnCell("codeBlock")
+                }}>
+                    <BiCodeAlt/>
+                    <p>Código</p>
                 </li>
             </ul>
 
