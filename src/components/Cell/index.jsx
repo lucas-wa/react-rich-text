@@ -7,6 +7,7 @@ import ContentEditable from "react-contenteditable";
 
 
 import CodeEditor from '@uiw/react-textarea-code-editor';
+import { CodeCell } from "../CodeCell";
 
 export function Cell({
     setIndexEdited,
@@ -85,19 +86,10 @@ export function Cell({
                         }}
                     />
                     :
-                    <CodeEditor
-                        className={`codeContent ${type}`}
-                        value={textValue}
-                        language="js"
-                        placeholder="Escreva algo"
-                        onChange={e => handleSaveText(index, e.target.value)}
-                        padding={15}
-                        style={{
-                            fontFamily: 'Poppins, ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono, Menlo, monospace',
-                            width: "100%",
-                            zIndex: 0,
-
-                        }}
+                    <CodeCell
+                        textValue={textValue}
+                        index={index}
+                        handleSaveText={handleSaveText }
                     />}
 
             </div>

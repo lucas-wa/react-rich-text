@@ -1,0 +1,31 @@
+.codeCellContainer {
+    width: 100%;
+    min-height: 2.8rem;
+    display: block;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+
+    .languageSelector{
+        position: absolute;
+        right: 0;
+        top:0;
+        z-index: 1;
+        border: none;
+        outline:none;
+        padding: .1rem;
+        background-color: inherit;
+        color: #f0f0f0;
+
+        option {
+            background-color: #0e0e0e;
+        }
+        
+    }
+
+    .codeContent {
+    width: 100%;
+        
+    }
+}

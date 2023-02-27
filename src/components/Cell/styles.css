@@ -1,7 +1,3 @@
-.cell {
-    /* position: relative; */
-}
-
 .cell .content {
     width: 100%;
     min-height: 2.8rem;
@@ -53,8 +49,8 @@
     cursor: pointer;
     border-radius: 5px;
     padding: 1px;
-    width: 19px;
-    height: 19px;
+    min-width: 19px;
+    min-height: 19px;
     transition: background-color .3s ease;
 }
 
