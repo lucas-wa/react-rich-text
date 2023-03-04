@@ -18,7 +18,9 @@ export function Cell({
     handleSaveText,
     background,
     color,
-    type }) {
+    type,
+    language
+ }) {
 
 
 
@@ -89,7 +91,11 @@ export function Cell({
                     <CodeCell
                         textValue={textValue}
                         index={index}
-                        handleSaveText={handleSaveText }
+                        handleSaveText={handleSaveText}
+                        setIndexEdited={setIndexEdited}
+                        setModalState={setModalState}
+                        setModalRequest={setModalRequest}
+                        language={language}
                     />}
 
             </div>

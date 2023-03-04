@@ -62,14 +62,15 @@ export function ActionsMenu({
             prevState => {
                 const prev = [...prevState]
 
-                const { type, color, background } = prev[index];
+                const { type, color, background, language } = prev[index];
 
                 prev.splice(index + 1, 0,
                     {
                         key: shortid.generate(),
                         type,
                         color,
-                        background
+                        background,
+                        language
                     }
                 )
 

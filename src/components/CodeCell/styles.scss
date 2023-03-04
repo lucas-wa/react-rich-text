@@ -5,21 +5,39 @@
     border: none;
     outline: none;
     overflow: hidden;
-    position: relative;
+    // position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #191919;
 
     .languageSelector{
-        position: absolute;
-        right: 0;
-        top:0;
+
+        align-self: flex-start;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .5rem;
+
+        cursor: pointer;
+        text-align: left;
+        font-size: .9rem;
+        // position: absolute;
+        // right: 0;
+        // top:0;
         z-index: 1;
         border: none;
         outline:none;
         padding: .1rem;
         background-color: inherit;
         color: #f0f0f0;
+        border-radius: .5rem;
+        padding: .5rem;
 
         option {
             background-color: #0e0e0e;
+            border: none;
         }
         
     }

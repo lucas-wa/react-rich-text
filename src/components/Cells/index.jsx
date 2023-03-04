@@ -11,7 +11,8 @@ export function Cells() {
                 key: shortid.generate(),
                 type: "text",
                 color: "inherint",
-                background: "inherint"
+                background: "inherint",
+                language: "JavaScript"
             }
         ]);
 
@@ -60,6 +61,7 @@ export function Cells() {
 
                         return (<Cell key={cell.key}
                             type={cell.type}
+                            language={cell.language}
                             index={index}
                             color={cell.color}
                             background={cell.background}

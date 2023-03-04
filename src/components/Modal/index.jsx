@@ -7,8 +7,9 @@ import { TypesMenu } from "../TypesMenu";
 import { SelectorMenu } from "../SelectorMenu";
 
 import "./styles.scss"
+import { LanguagesMenu } from "../LanguagesMenu";
 
-export function Modal({ 
+export function Modal({
     index,
     setModalState,
     setCells,
@@ -21,37 +22,48 @@ export function Modal({
     const [colorsMenu, setColorsMenu] = useState(modalRequest == "EditColor");
     const [typesMenu, setTypesMenu] = useState(false);
     const [selectorMenu, setSelectorMenu] = useState(modalRequest == "SelectorMenu")
+    const [languagesMenu, setLanguagesMenu] = useState(modalRequest == "LanguagesMenu")
 
 
     useEffect(() => {
-        
+
 
         const modal = document.querySelector(".modal-wrapper .modal")
-        
-        if (modalRequest !== "SelectorMenu") {
 
-            const cellLocation = document
-            .querySelector(`.cell${index} .icons`)
-            .getBoundingClientRect()
-
-            modal.style.top = (cellLocation.bottom + 10).toString() + "px"
-            modal.style.left = cellLocation.left.toString() + "px"
-
-        } else {
+        if (modalRequest == "SelectorMenu") {
 
             const selection = document.getSelection();
             const range = selection.getRangeAt(0);
 
             const selectorMenuHeight = document
-            .querySelector(".SelectorMenuContainer")
-            .getBoundingClientRect()
-            .height;
+                .querySelector(".SelectorMenuContainer")
+                .getBoundingClientRect()
+                .height;
 
 
-            const {left, top} = range.getBoundingClientRect();
+            const { left, top } = range.getBoundingClientRect();
             modal.style.top = (top - selectorMenuHeight - 5).toString() + "px"
             modal.style.left = (left).toString() + "px"
 
+        } else if(modalRequest == "LanguagesMenu"){
+            
+            const cellLocation = document
+                .querySelector(`.cell${index} .codeCellContainer .languageSelector`)
+                .getBoundingClientRect()
+
+            modal.style.top = (cellLocation.bottom).toString() + "px"
+            modal.style.left = cellLocation.left.toString() + "px"
+
+        } 
+        
+        else {
+            
+            const cellLocation = document
+                .querySelector(`.cell${index} .icons`)
+                .getBoundingClientRect()
+
+            modal.style.top = (cellLocation.bottom + 10).toString() + "px"
+            modal.style.left = cellLocation.left.toString() + "px"
 
         }
 
@@ -114,14 +126,20 @@ export function Modal({
                     setCells={setCells}
                 />}
 
-                {
-                    selectorMenu &&
+                {selectorMenu &&
                     <SelectorMenu
                         index={index}
                         setModalState={setModalState}
                         setTexts={setTexts}
-                    />
-                }
+                    />}
+
+                { languagesMenu && 
+                <LanguagesMenu
+                index={index}
+                setCells={setCells}
+                setModalState={setModalState}
+                />}
+
 
             </div>
 

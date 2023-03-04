@@ -32,6 +32,7 @@ export function AddCellsMenu({
                     type,
                     color: "inherint",
                     background: "inherint",
+                    language: "JavaScript"
                 }
 
                 prev.splice(index + 1, 0, newElement)
