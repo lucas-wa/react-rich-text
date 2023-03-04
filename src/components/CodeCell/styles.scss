@@ -14,9 +14,10 @@
     .languageSelector{
 
         align-self: flex-start;
+        min-width: 7rem;
 
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
         gap: .5rem;
 
