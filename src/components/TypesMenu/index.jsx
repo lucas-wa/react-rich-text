@@ -18,6 +18,7 @@ export function TypesMenu({ index, setTypesMenu, setModalState, setCells }) {
         setCells(prevState => {
             const prev = [...prevState]
             
+            prev[index].language = "JavaScript"
             prev[index].type = className
 
             return prev
