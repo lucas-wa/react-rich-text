@@ -8,8 +8,9 @@ export function TypesMenu({ index, setTypesMenu, setModalState, setCells }) {
 
     function handleTurnCell(className) {
         const cellContent = 
-        document.querySelector(`.cell${index} .content`) ||
-        document.querySelector(`.cell${index} .codeContent`)
+        document.querySelector(`.cell${index} .content`) ?
+        document.querySelector(`.cell${index} .content`) :
+        document.querySelector(`.cell${index} .codeCellContainer .codeBlock`)
 
         cellContent.classList.remove(...cellContent.classList)
         cellContent.classList.add(className !== "codeBlock" ? "content" : "codeContent", className)

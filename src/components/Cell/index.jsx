@@ -1,6 +1,6 @@
 import "./styles.css";
 import { VscAdd } from "react-icons/vsc";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CgMenuGridO } from "react-icons/cg"
 import { useRef } from "react";
 import ContentEditable from "react-contenteditable";
@@ -30,6 +30,8 @@ export function Cell({
     const [iconState, setIconState] = useState(false);
 
 
+
+    useEffect(()=>console.log("oi"), [type])
 
     return (
 
