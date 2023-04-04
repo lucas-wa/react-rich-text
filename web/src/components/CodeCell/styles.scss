@@ -11,10 +11,12 @@
     align-items: center;
     background-color: #191919;
 
-    .languageSelector{
+  
 
+    .languageSelector {
         align-self: flex-start;
-        min-width: 7rem;
+        min-width: 10rem;
+        width: fit-content;
 
         display: flex;
         justify-content: flex-end;
@@ -23,13 +25,12 @@
 
         cursor: pointer;
         text-align: left;
-        font-size: .9rem;
         // position: absolute;
         // right: 0;
         // top:0;
         z-index: 1;
         border: none;
-        outline:none;
+        outline: none;
         padding: .1rem;
         background-color: inherit;
         color: #f0f0f0;
@@ -40,11 +41,21 @@
             background-color: #0e0e0e;
             border: none;
         }
-        
+  
+        span {
+            font-size: 1.4rem;
+        }
+
+        svg {
+            width: 1.3rem;
+        }
+
+
     }
 
+
     .codeContent {
-    width: 100%;
-        
+        width: 100%;
+
     }
 }

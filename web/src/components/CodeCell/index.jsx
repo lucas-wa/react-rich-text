@@ -30,8 +30,9 @@ export function CodeCell({ textValue,
                 onChange={e => handleSaveText(index, e.target.value)}
                 padding={10}
                 style={{
-                    fontFamily: 'Poppins, ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono, Menlo, monospace',
+                    fontFamily: 'Roboto, ui-monospace, SFMono-Regular, SF Mono, Consolas, Liberation Mono, Menlo, monospace',
                     width: "100%",
+                    fontSize:"1.6rem",
                     zIndex: 0,
                     backgroundColor: "#191919"
                 }}
