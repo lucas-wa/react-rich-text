@@ -1,0 +1,38 @@
+.Header {
+    padding: 4rem 5rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    figure img {
+        width: 20rem;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+
+        li {
+            cursor: pointer;
+            filter: brightness(.9);
+            text-align: center;
+
+            transition: all .3s ease;
+
+            &:hover {
+                filter: brightness(1);
+                background: var(--light-logo-purple);
+            }
+
+            &:nth-child(2){
+                background-color: var(--black-logo-purple);
+                padding: 1rem;
+                border-radius: 1rem;
+            }
+        }
+    }
+}
