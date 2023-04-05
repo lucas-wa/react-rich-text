@@ -31,7 +31,6 @@ export function Cell({
 
 
 
-    useEffect(()=>console.log("oi"), [type])
 
     return (
 
