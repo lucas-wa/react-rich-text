@@ -4,7 +4,7 @@ import { Modal } from "../Modal";
 import { Cell } from "../Cell";
 import "./styles.scss"
 
-export function Cells() {
+export function Editor() {
     const [cells, setCells] = useState(
         [
             {

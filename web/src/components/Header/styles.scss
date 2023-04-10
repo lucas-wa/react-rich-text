@@ -6,7 +6,7 @@
     align-items: center;
 
     figure img {
-        width: 20rem;
+        width: 15rem;
     }
 
     nav ul {
@@ -17,18 +17,22 @@
         gap: 2rem;
 
         li {
-            cursor: pointer;
-            filter: brightness(.9);
-            text-align: center;
-
-            transition: all .3s ease;
-
-            &:hover {
-                filter: brightness(1);
-                background: var(--light-logo-purple);
+            a {
+                color: inherit;
+                text-decoration: none;
+                cursor: pointer;
+                filter: brightness(.9);
+                text-align: center;
+    
+                transition: all .3s ease;
+    
+                &:hover {
+                    filter: brightness(1);
+                    background: var(--light-logo-purple);
+                }
             }
 
-            &:nth-child(2){
+            &:nth-child(2) a{
                 background-color: var(--black-logo-purple);
                 padding: 1rem;
                 border-radius: 1rem;
