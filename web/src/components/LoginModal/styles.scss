@@ -36,7 +36,7 @@
         box-shadow: 0 0 .5rem #fff;
 
 
-        
+
         input {
             outline: none;
             background: inherit;
@@ -45,7 +45,7 @@
             border: none;
             border-bottom: .1rem #fff solid;
             width: 100%;
-            color:#fff;
+            color: #fff;
             transition: padding .3s ease;
 
             &:focus {
@@ -54,6 +54,25 @@
 
         }
 
-        
+        button {
+            min-height: 2rem;
+            padding: 1rem;
+            width: 100%;
+            background-color: var(--black-logo-purple);
+            outline: none;
+            border: none;
+            color: #fff;
+            border-radius: .5rem;
+            cursor: pointer;
+
+            filter: brightness(80%);
+            transition: filter .3s ease;
+
+            &:hover {
+                filter: brightness(100%);
+            }
+        }
+
+
     }
 }
