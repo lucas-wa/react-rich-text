@@ -35,6 +35,10 @@ app.get("/", (req, res) => {
     res.send("Olá")
 });
 
+app.get("/dashboard", verifyToken, (req, res) => {
+
+})
+
 app.post("/createUser", async (req, res) => {
 
     const { username, email, password } = req.body;
@@ -106,7 +110,25 @@ app.post("/googleSign", async (req, res) => {
         await set(ref(database, 'users/' + uid), {
             username,
             email,
-            avatar_url
+            avatar_url,
+            folders:  [
+                {
+                    name: "Folder",
+                    files: [
+                        {
+                            title: "Untitle",
+                            cells: [
+                                {
+                                    type: "text",
+                                    color: "inherint",
+                                    background: "inherint",
+                                    language: "JavaScript"
+                                }
+                            ]
+                        }
+                    ]                             
+                }
+            ]
         })
 
 
@@ -130,46 +152,6 @@ app.post("/googleSign", async (req, res) => {
         res.status(500).send("Internal server error")
     }
 
-
-
-    // try {
-    //     // console.log({ verified: verifyGoogleToken(req.body.credential) });
-    //     if (req.body.credential) {
-    //         const verificationResponse = await verifyGoogleToken(req.body.credential);
-
-    //         if (verificationResponse.error) {
-    //             return res.status(400).json({
-    //                 message: verificationResponse.error,
-    //             });
-    //         }
-
-
-
-    //         const profile = verificationResponse.payload;
-    //         const token = jwt.sign({ email: profile.email }, JWT_SECRET, {
-    //             expiresIn: "1d",
-    //         });
-
-    //         res.status(201).json({
-    //             message: "Signup was successful",
-    //             user: {
-    //                 firstName: profile.given_name,
-    //                 lastName: profile.family_name,
-    //                 picture: profile.picture,
-    //                 email: profile.email,
-    //                 token
-    //             },
-    //         });
-    //     }
-    // } catch (error) {
-    //     console.log(error)
-    //     res.status(500).json({
-    //         message: "An error occurred. Registration failed.",
-    //     });
-    // }
-
-
-
 });
 
 app.listen("8080", () => {
@@ -177,17 +159,17 @@ app.listen("8080", () => {
 });
 
 
+async function verifyToken (req, res, next)  {
+    try {
+        const idToken = req.headers.authorization.split(' ')[1];
+        const decodedToken = await auth().verifyIdToken(idToken);
 
-
-// async function verifyGoogleToken(token) {
-//     try {
-//         const ticket = await client.verifyIdToken({
-//             idToken: token,
-//             audience: GOOGLE_CLIENT_ID,
-//         });
-//         return { payload: ticket.getPayload() };
-//     } catch (error) {
-//         return { error: "Invalid user detected. Please try again" };
-//     }
-// }
-
+        // Check if the token has expired
+        const nowInSeconds = Math.floor(Date.now() / 1000);
+        if (decodedToken.exp < nowInSeconds) {
+            throw new Error('Token has expired');
+        }
+    } catch (error) {
+        res.status(401).json({ error: 'Invalid token' });
+    }
+}
