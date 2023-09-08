@@ -4,25 +4,25 @@ import "./global.scss";
 import { Home } from "./pages/Home";
 import { Dashboard } from "./pages/Dashboard";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { UserContext } from "./contexts/userContext";
+import { AuthProvider } from "./contexts/auth";
 import { useState } from "react";
 
 const router = createBrowserRouter([
   {
-    path:"/",
-    element: <Home/>
+    path: "/",
+    element: <Home />
   },
   {
     path: "/sign",
-    element: <SignModal/>
+    element: <SignModal />
   },
   {
     path: "/login",
-    element: <LoginModal/>
+    element: <LoginModal />
   },
   {
     path: "/dashboard",
-    element: <Dashboard/>
+    element: <Dashboard />
   }
 ]);
 
@@ -32,9 +32,9 @@ function App() {
   const [user, setUser] = useState({});
 
   return (
-    <UserContext.Provider value={{user, setUser}}>
-      <RouterProvider router={router}/>
-    </UserContext.Provider>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   )
 }
 

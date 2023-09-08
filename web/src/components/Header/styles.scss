@@ -23,18 +23,24 @@
                 cursor: pointer;
                 filter: brightness(.9);
                 text-align: center;
-    
+
                 transition: all .3s ease;
-    
+
                 &:hover {
                     filter: brightness(1);
                     background: var(--light-logo-purple);
                 }
             }
 
-            &:nth-child(2) a{
+            &:nth-child(2) a {
                 background-color: var(--black-logo-purple);
                 padding: 1rem;
+                border-radius: 1rem;
+            }
+
+            a.logout_link {
+                background-color: var(--black-logo-purple);
+                padding: 1rem 2rem;
                 border-radius: 1rem;
             }
         }

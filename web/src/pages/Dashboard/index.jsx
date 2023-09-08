@@ -1,21 +1,29 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import './styles.scss'
-import { UserContext } from '../../contexts/userContext'
+import { AuthContext } from '../../contexts/auth';
+import { Header } from '../../components/Header';
 
 export function Dashboard() {
 
-    const { user, setUser } = useContext(UserContext);
+    const { userState } = useContext(AuthContext);
+
+    useEffect(() => {
+        console.log(userState)
+    }, []);
 
     return (
         <div className="Dashboard">
+
+            <Header></Header>
+
             Dashboard
 
             {
-                user &&
+                userState &&
                 <>
-                    <p>{user.username}</p>
-                    <p>{user.email}</p>
-                    <img src={user.avatar_url}   />
+                    <p>{userState.username}</p>
+                    <p>{userState.email}</p>
+                    <img src={userState.avatar_url}   />
                 </>
             }
         </div>

@@ -1,8 +1,12 @@
 import './styles.scss'
 import Logo from "../../assets/Logo.svg"
 import { Link, useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/auth';
 
 export function Header() {
+
+    const { userState, signOut } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -19,16 +23,29 @@ export function Header() {
             </figure>
             <nav>
                 <ul>
-                    <li onMouseDown={e => handleRegisterMenu()}>
-                        <Link to="/login">
-                            Entrar
-                        </Link>
-                    </li>
-                    <li onMouseDown={e => handleRegisterMenu()}>
-                        <Link to="/sign">
-                            Cadastrar
-                        </Link>
-                    </li>
+
+                    {
+                        userState ?
+                            <li onMouseDown={e => handleRegisterMenu()}>
+                                <Link className='logout_link' onClick={signOut}>
+                                    Sair
+                                </Link>
+                            </li>
+                            :
+                            <>
+                                <li onMouseDown={e => handleRegisterMenu()}>
+                                    <Link to="/login">
+                                        Entrar
+                                    </Link>
+                                </li>
+                                <li onMouseDown={e => handleRegisterMenu()}>
+                                    <Link to="/sign">
+                                        Cadastrar
+                                    </Link>
+                                </li>
+                            </>
+                    }
+
                 </ul>
             </nav>
         </header>

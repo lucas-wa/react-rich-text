@@ -5,88 +5,32 @@ import { Link, useNavigate } from "react-router-dom"
 import { useContext, useEffect, useRef, useState } from 'react';
 import { api } from '../../lib/api';
 import { Loader } from '../Loader';
-import { signWithGoogle, firebaseApp } from "../../service/firebase";
-import { UserContext } from '../../contexts/userContext';
+import { AuthContext } from '../../contexts/auth';
 
 
 
 export function SignModal() {
 
-    const { user, setUser } = useContext(UserContext);
+    const { userState, signIn } = useContext(AuthContext);
+    
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
 
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
-
-
-    const inputsRef = useRef([]);
     const googleSignButtonRef = useRef();
-
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-
-        setIsLoading(true)
-
-        const res = await api.post("/createUser", {
-            username,
-            email,
-            password
-        });
-
-        setIsLoading(false)
-
-        inputsRef.current
-            .forEach(input => {
-                input.value = "";
-            });
-
-        setUsername("");
-        setEmail("");
-        setPassword("");
-
-        if (res.status == 201) {
-            navigate("/dashboard", { replace: true });
-        }
-    }
 
     async function handleCredentialResponse(res) {
         const credential = res.credential;
 
-        setIsLoading(true)
+        setIsLoading(true);
 
-        const response = await signWithGoogle(credential);
+        await signIn(credential);
 
-        setIsLoading(false)
+        setIsLoading(false);
 
-        console.log(response.data)
+        console.log(userState)
 
-        if (response.status == 200) {
-
-            const { accessToken,
-                refreshToken,
-                username,
-                email,
-                avatar_url } = response.data;
-
-            // console.log(accessToken, refreshToken)
-
-            setUser({
-                accessToken,
-                refreshToken,
-                username,
-                email,
-                avatar_url
-            });
-
-            document.cookie = `accessToken=${accessToken}; path=/; Secure; HttpOnly`;
-            document.cookie = `refreshToken=${refreshToken}; path=/; Secure; HttpOnly`;
-
-            navigate("/dashboard");
-        }
+        if(userState) navigate("/dashboard");
 
     }
 
@@ -112,6 +56,10 @@ export function SignModal() {
 
     }, [])
 
+    useEffect(() => {
+        if(userState) navigate("/dashboard");
+    }, [userState]);
+
     return (
         <div className="SignModal">
             <header>
@@ -126,41 +74,6 @@ export function SignModal() {
 
                 <form action="POST" onSubmit={e => handleSubmit(e)}>
                     <h2>Cadastrar</h2>
-                    <input
-                        required
-                        ref={element => inputsRef.current[0] = element}
-                        onChange={e => setUsername(e.target.value)}
-                        type="text"
-                        name="username"
-                        id="input_username"
-                        placeholder='Nome de usuário' />
-
-                    <input
-                        required
-                        ref={element => inputsRef.current[1] = element}
-                        onChange={e => setEmail(e.target.value)}
-                        type="email"
-                        name="email"
-                        id="input_email"
-                        placeholder='Email' />
-
-                    <input
-                        required
-                        ref={element => inputsRef.current[2] = element}
-                        onChange={e => setPassword(e.target.value)}
-                        type="password"
-                        name="password"
-                        id="input_password"
-                        placeholder='Senha' />
-
-
-                    <button type="submit">
-                        {isLoading ?
-                            <Loader />
-                            :
-                            "Cadastrar"
-                        }
-                    </button>
                 </form>
                 <div className="OAuthSign" >
 
