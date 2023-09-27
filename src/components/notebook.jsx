@@ -129,7 +129,29 @@ export function Notebook() {
         cellsContents.current[idx] = content;
     }
 
-    const cellsHandlers = { addCell, deleteCell, duplicateCell, saveContent };
+    function changeTextColor(idx, color) {
+        setCells(prevState => {
+
+            const prev = [...prevState];
+
+            prev[idx].color = color;
+
+            return prev
+        })
+    }
+
+    function changeBackgroundColor(idx, background) { 
+        setCells(prevState => {
+
+            const prev = [...prevState];
+
+            prev[idx].background = background;
+
+            return prev
+        })
+    }
+
+    const cellsHandlers = { addCell, deleteCell, duplicateCell, saveContent, changeTextColor, changeBackgroundColor };
 
     return (
         <div className="w-full px-56">
@@ -140,6 +162,8 @@ export function Notebook() {
                         cellsHandlers={cellsHandlers}
                         idx={idx}
                         content={cellsContents.current[idx]}
+                        color={color}
+                        background={background}
                     ></Cell>
                 )
             }

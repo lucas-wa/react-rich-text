@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import ContentEditable from "react-contenteditable";
 import { ActionsMenu } from "./actions-menu";
 
-export function Cell({ idx, cellsHandlers, content }) {
+export function Cell({ idx, cellsHandlers, content, color, background }) {
 
 
     const [iconAppear, setIconAppear] = useState(false);
@@ -29,8 +29,8 @@ export function Cell({ idx, cellsHandlers, content }) {
 
             <ContentEditable
                 placeholder="Digite algo"
-                className="text-white empty:text-white/50 w-full outline-none p-2.5 rounded-none hover:bg-slate-800 focus:bg-slate-800 transition-colors empty:before:content-[attr(placeholder)] cursor-text"
-                html={content || text.current}
+                className={`text-${color == "inherit" ? "inherit" : color + "-500"} empty:text-${color == "inherit" ? "inherit" : color + "-500"}/50 w-full outline-none p-2.5 rounded-none bg-${background == "inherit" ? "inherit" : background + "-500"}  hover:bg-${background == "inherit" ? "inherit" : background + "-800"}/20 focus:bg-slate-800 transition-colors empty:before:content-[attr(placeholder)] cursor-text`}
+                html={text.current || content}
                 onChange={e => { 
                     text.current = e.target.value;
                     saveContent(idx, e.target.value);
