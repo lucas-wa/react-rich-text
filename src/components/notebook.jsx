@@ -148,7 +148,9 @@ export function Notebook() {
             prev[idx].background = background;
 
             return prev
-        })
+        });
+
+        console.log(cells)
     }
 
     const cellsHandlers = { addCell, deleteCell, duplicateCell, saveContent, changeTextColor, changeBackgroundColor };

@@ -6,11 +6,11 @@ export function ActionsMenu({ iconAppear, cellsHandlers, idx }) {
     const { deleteCell, duplicateCell, changeTextColor, changeBackgroundColor } = cellsHandlers;
 
     const colors = [
-        ["red", "Vermelho"],
-        ["blue", "Azul"],
-        ["pink", "Rosa"],
-        ["green", "Verde"],
-        ["purple", "Roxo"]
+        ["red", "Vermelho", "text-red-500"],
+        ["blue", "Azul", "text-blue-500"],
+        ["pink", "Rosa", "text-pink-500"],
+        ["green", "Verde", "text-green-500"],
+        ["purple", "Roxo", "text-purple-500"]
     ];
 
     return (
@@ -43,9 +43,9 @@ export function ActionsMenu({ iconAppear, cellsHandlers, idx }) {
                             <DropdownMenuLabel>Texto</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             {
-                                colors.map(([color, text], key) =>
+                                colors.map(([color, text, text_color], key) =>
 
-                                    <DropdownMenuItem key={key} className={`flex gap-2 cursor-pointer text-${color}-500`} onClickCapture={e => changeTextColor(idx, color)} >
+                                    <DropdownMenuItem key={key} className={`flex gap-2 cursor-pointer ${text_color}`} onClickCapture={e => changeTextColor(idx, color)} >
                                         <Pen className="w-6" />
                                         {text}
                                     </DropdownMenuItem>
@@ -56,9 +56,9 @@ export function ActionsMenu({ iconAppear, cellsHandlers, idx }) {
                             <DropdownMenuLabel>Fundo</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             {
-                                colors.map(([color, text], key) =>
+                                colors.map(([color, text, text_color], key) =>
 
-                                    <DropdownMenuItem key={key} className={`flex gap-2 cursor-pointer text-${color}-500`} onClickCapture={e => changeBackgroundColor(idx, color)} >
+                                    <DropdownMenuItem key={key} className={`flex gap-2 cursor-pointer ${text_color}`} onClickCapture={e => changeBackgroundColor(idx, color)} >
                                         <Image className="w-6" />
                                         {text}
                                     </DropdownMenuItem>
