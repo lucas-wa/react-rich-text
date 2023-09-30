@@ -153,10 +153,24 @@ export function Notebook() {
         console.log(cells)
     }
 
-    const cellsHandlers = { addCell, deleteCell, duplicateCell, saveContent, changeTextColor, changeBackgroundColor };
+    function changeCellType(idx, type){
+
+        setCells(prevState => {
+
+            const prev = [...prevState];
+
+            prev[idx].type = type;
+
+            return prev;
+
+        });
+
+    }
+
+    const cellsHandlers = { addCell, deleteCell, duplicateCell, saveContent, changeTextColor, changeBackgroundColor, changeCellType };
 
     return (
-        <div className="w-full px-56">
+        <div className="w-full px-56 flex flex-col gap-2">
             {
                 cells.map(({ key, type, color, background, language }, idx) =>
                     <Cell
@@ -166,6 +180,7 @@ export function Notebook() {
                         content={cellsContents.current[idx]}
                         color={color}
                         background={background}
+                        type={type}
                     ></Cell>
                 )
             }

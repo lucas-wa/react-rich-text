@@ -1,16 +1,30 @@
-import { ArrowDownRightSquareIcon, Copy, Image, LayoutGrid, Paintbrush, Pen, Text, Trash } from "lucide-react";
+import { ArrowDownRightSquareIcon, CaseLower, CaseUpper, Copy, Image, LayoutGrid, Paintbrush, Pen, Text, Trash } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "./ui/dropdown-menu";
 
 export function ActionsMenu({ iconAppear, cellsHandlers, idx }) {
 
-    const { deleteCell, duplicateCell, changeTextColor, changeBackgroundColor } = cellsHandlers;
+    const { deleteCell, duplicateCell, changeTextColor, changeBackgroundColor, changeCellType } = cellsHandlers;
 
     const colors = [
+        ["inherit", "Padrão", "text-inherit"],
         ["red", "Vermelho", "text-red-500"],
         ["blue", "Azul", "text-blue-500"],
         ["pink", "Rosa", "text-pink-500"],
         ["green", "Verde", "text-green-500"],
         ["purple", "Roxo", "text-purple-500"]
+    ];
+
+    const cellTypes = [
+        {
+            type: "subtitle",
+            text: "Subtítulo",
+            icon: <CaseUpper />,
+        },
+        {
+            type: "text",
+            text: "Texto",
+            icon: <CaseLower />,
+        }
     ];
 
     return (
@@ -29,10 +43,32 @@ export function ActionsMenu({ iconAppear, cellsHandlers, idx }) {
                     <Copy className="w-6" />
                     Duplicar
                 </DropdownMenuItem>
-                <DropdownMenuItem className="flex gap-2 cursor-pointer">
-                    <ArrowDownRightSquareIcon className="w-6" />
-                    Tornar um
-                </DropdownMenuItem>
+
+                <DropdownMenuSub>
+                    <DropdownMenuSubTrigger className="flex gap-2 cursor-pointer">
+                        <ArrowDownRightSquareIcon className="w-6" />
+                        Tornar um
+                    </DropdownMenuSubTrigger>
+
+                    <DropdownMenuPortal>
+                        <DropdownMenuSubContent>
+
+                            {
+                                cellTypes.map(({type, icon, text}) =>
+
+                                    <DropdownMenuItem className={`flex gap-2 cursor-pointer justify-start items-center`}
+                                    onClick={() => changeCellType(idx, type)}>
+                                        {icon}
+                                        {text}
+                                    </DropdownMenuItem>
+
+                                )
+                            }
+                        </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+
+                </DropdownMenuSub>
+
                 <DropdownMenuSub>
                     <DropdownMenuSubTrigger className="flex gap-2 cursor-pointer">
                         <Paintbrush className="w-6" />
