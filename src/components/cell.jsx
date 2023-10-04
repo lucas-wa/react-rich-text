@@ -4,6 +4,7 @@ import { Plus } from "lucide-react";
 import { useRef, useState } from "react";
 import ContentEditable from "react-contenteditable";
 import { ActionsMenu } from "./actions-menu";
+import { AddMenu } from "./add-menu";
 
 export function Cell({ idx, cellsHandlers, content, color, background, type }) {
 
@@ -28,10 +29,13 @@ export function Cell({ idx, cellsHandlers, content, color, background, type }) {
 
     return (
 
-        <div className="w-full flex gap-2 md:gap-5 justify-between" onMouseEnter={() => setIconAppear(true)} onMouseLeave={() => setIconAppear(false)}>
-            <Plus
-                onClick={() => addCell(idx)}
-                className={`w-full aspect-square md:w-6 mt-2.5 ${iconAppear ? "md:opacity-100" : "md:opacity-0"} transition-all cursor-pointer hover:bg-slate-800 rounded`} />
+        <div className="w-full flex md:gap-5 justify-between px-5 md:px-0" onMouseEnter={() => setIconAppear(true)} onMouseLeave={() => setIconAppear(false)}>
+            
+            <AddMenu
+                iconAppear={iconAppear}
+                cellsHandlers={cellsHandlers}
+                idx={idx}>
+            </AddMenu>
 
 
             <ActionsMenu
@@ -46,8 +50,12 @@ export function Cell({ idx, cellsHandlers, content, color, background, type }) {
                 className={`
                 resize-none
                 ${color == "inherit" ? "text-inherit" : "text-" + color + "-500"} 
-                empty:text-${color == "inherit" ? "inherit" : color + "-500"}/50 
-                w-full outline-none p-2.5 rounded-none 
+                empty:text-${color == "inherit" ? "inherit" : color + "-500"}/50
+                max-w-[270px]
+                md:max-w-4xl 
+                w-full
+                outline-none p-2.5 rounded-none
+                break-before-auto
                 ${backgroundColors[background]}
                 ${cellTypes[type]}                  
                 transition-colors empty:before:content-[attr(placeholder)] cursor-text break-words`}

@@ -30,7 +30,7 @@ export function ActionsMenu({ iconAppear, cellsHandlers, idx }) {
     return (
         <DropdownMenu >
             <DropdownMenuTrigger className="w-10 aspect-square h-full">
-                <LayoutGrid className={`w-10 md:w-6 mt-2.5 ${iconAppear ? "md:opacity-100" : "md:opacity-0"} transition-all cursor-pointer hover:bg-slate-800 rounded outline-none`}/>
+                <LayoutGrid className={`w-full mr-1 md:w-6 mt-2.5 ${iconAppear ? "md:opacity-100" : "md:opacity-0"} transition-all cursor-pointer hover:bg-slate-800 rounded outline-none`}/>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuLabel>Ações</DropdownMenuLabel>

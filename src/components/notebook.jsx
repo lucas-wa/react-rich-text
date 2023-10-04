@@ -21,7 +21,7 @@ export function Notebook() {
 
     const cellsContents = useRef([""]);
 
-    function addCell(idx) {
+    function addCell(idx, type) {
 
         cellsContents.current.splice(idx + 1, 0, "");
 
@@ -35,7 +35,7 @@ export function Notebook() {
             const newElement =
             {
                 key: shortid.generate(),
-                type: "text",
+                type,
                 color: "inherint",
                 background: "inherint",
                 language: "JavaScript",
@@ -170,7 +170,7 @@ export function Notebook() {
     const cellsHandlers = { addCell, deleteCell, duplicateCell, saveContent, changeTextColor, changeBackgroundColor, changeCellType };
 
     return (
-        <div className="w-full px-6 py-12 md:px-56 md:py-24 flex flex-col gap-2">
+        <div className="w-full max-w-5xl py-12 md:py-24 flex flex-col gap-2">
             {
                 cells.map(({ key, type, color, background, language }, idx) =>
                     <Cell
