@@ -6,7 +6,7 @@ export function ActionsMenu({ iconAppear, cellsHandlers, idx }) {
     const { deleteCell, duplicateCell, changeTextColor, changeBackgroundColor, changeCellType } = cellsHandlers;
 
     const colors = [
-        ["inherit", "Padrão", "text-inherit"],
+        ["inherint", "Padrão", "text-inherit"],
         ["red", "Vermelho", "text-red-500"],
         ["blue", "Azul", "text-blue-500"],
         ["pink", "Rosa", "text-pink-500"],
@@ -29,8 +29,8 @@ export function ActionsMenu({ iconAppear, cellsHandlers, idx }) {
 
     return (
         <DropdownMenu >
-            <DropdownMenuTrigger className={`mt-2.5 ${iconAppear ? "opacity-100" : "opacity-0"} transition-all cursor-pointer hover:bg-slate-800 rounded h-fit outline-none`}>
-                <LayoutGrid />
+            <DropdownMenuTrigger className="w-10 aspect-square h-full">
+                <LayoutGrid className={`w-10 md:w-6 mt-2.5 ${iconAppear ? "md:opacity-100" : "md:opacity-0"} transition-all cursor-pointer hover:bg-slate-800 rounded outline-none`}/>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuLabel>Ações</DropdownMenuLabel>

@@ -170,7 +170,7 @@ export function Notebook() {
     const cellsHandlers = { addCell, deleteCell, duplicateCell, saveContent, changeTextColor, changeBackgroundColor, changeCellType };
 
     return (
-        <div className="w-full px-56 flex flex-col gap-2">
+        <div className="w-full px-6 py-12 md:px-56 md:py-24 flex flex-col gap-2">
             {
                 cells.map(({ key, type, color, background, language }, idx) =>
                     <Cell

@@ -13,7 +13,7 @@ export function Cell({ idx, cellsHandlers, content, color, background, type }) {
     const { addCell, saveContent } = cellsHandlers;
 
     const backgroundColors = {
-        inherit: "bg-inherit hover:bg-inherit focus:bg-slate-800",
+        inherint: "bg-inherint hover:bg-slate-800 focus:bg-slate-800",
         red: "bg-red-500/50 hover:bg-red-600/50 focus:bg-red-600/50",
         blue: "bg-blue-500/50 hover:bg-blue-600/50 focus:bg-blue-600/50",
         pink: "bg-pink-500/50 hover:bg-pink-600/50 focus:bg-pink-600/50",
@@ -28,10 +28,10 @@ export function Cell({ idx, cellsHandlers, content, color, background, type }) {
 
     return (
 
-        <div className="w-full flex gap-5" onMouseEnter={() => setIconAppear(true)} onMouseLeave={() => setIconAppear(false)}>
+        <div className="w-full flex gap-2 md:gap-5 justify-between" onMouseEnter={() => setIconAppear(true)} onMouseLeave={() => setIconAppear(false)}>
             <Plus
                 onClick={() => addCell(idx)}
-                className={`mt-2.5 ${iconAppear ? "opacity-100" : "opacity-0"} transition-all cursor-pointer hover:bg-slate-800 rounded`} />
+                className={`w-full aspect-square md:w-6 mt-2.5 ${iconAppear ? "md:opacity-100" : "md:opacity-0"} transition-all cursor-pointer hover:bg-slate-800 rounded`} />
 
 
             <ActionsMenu
@@ -44,12 +44,13 @@ export function Cell({ idx, cellsHandlers, content, color, background, type }) {
             <ContentEditable
                 placeholder="Digite algo"
                 className={`
+                resize-none
                 ${color == "inherit" ? "text-inherit" : "text-" + color + "-500"} 
                 empty:text-${color == "inherit" ? "inherit" : color + "-500"}/50 
                 w-full outline-none p-2.5 rounded-none 
                 ${backgroundColors[background]}
                 ${cellTypes[type]}                  
-                transition-colors empty:before:content-[attr(placeholder)] cursor-text`}
+                transition-colors empty:before:content-[attr(placeholder)] cursor-text break-words`}
                 html={text.current || content}
                 onChange={e => {
                     text.current = e.target.value;
